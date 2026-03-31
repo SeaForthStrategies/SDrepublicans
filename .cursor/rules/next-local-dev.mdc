@@ -1,0 +1,39 @@
+---
+description: Keep Next.js local dev reliable (web/ pnpm dev, cache, scripts)
+alwaysApply: true
+---
+
+# Next.js local dev (`web/`)
+
+## Commands (from `web/`)
+
+- **`pnpm dev`** / **`pnpm dev:restart`** — Same: frees ports **3000 / 3001 / 8080**, clears **`.next`**, starts **`next dev`**. Use **`dev:restart`** when you want an explicit “bounce the server” name.
+- **`pnpm dev:quick`** — Same as `dev` but **does not** delete `.next` (faster when the cache is healthy).
+- **`pnpm dev:raw`** — Plain `next dev` (no port cleanup). Use only if you know ports are free.
+- **`pnpm dev:turbo`** — Same as **`pnpm dev`** but **`next dev --turbo`** (Turbopack). Uses a different pipeline than Webpack; on some machines / external volumes it is **more stable** when **`pnpm dev`** keeps dying or pegging CPU.
+
+## Do not break `scripts/dev.mjs`
+
+- Start Next with **`process.execPath`** + **`node_modules/next/dist/bin/next`** (already implemented). **Do not** switch back to **`spawn("corepack", …)`** or **`pnpm exec`** as the only way to launch dev — many environments lack `corepack` / `pnpm` on `PATH` for spawned child processes, which breaks dev with `ENOENT`.
+- If you add flags, pass them through to **`next dev`** (e.g. `-p 8080` after `--` in npm scripts).
+
+## External volumes (`/Volumes/...` on macOS)
+
+- **`scripts/dev.mjs`** turns on **`WATCHPACK_POLLING`** / **`CHOKIDAR_USEPOLLING`** on external paths so file watching and HMR stay reliable (native watchers are often flaky there).
+- **`next.config.mjs`** sets **`webpack.watchOptions.poll`** in dev on the same paths.
+- To disable polling (e.g. after moving the repo to an internal SSD): **`NEXT_DEV_POLLING=0`** when starting dev.
+
+## Stale `.next` (HTTP 500, missing chunk errors)
+
+- Symptoms: **`Cannot find module './NNN.js'`**, dev server returns **500**, or odd webpack errors — often on **external drives** or after interrupted compiles.
+- Fix: run **`pnpm dev`** (cleans by default) or **`rm -rf web/.next`** then **`pnpm dev`**.
+
+## Dev process exits / “localhost crashed” (external volume)
+
+- **Drive sleep / USB blip** — Node can exit if the volume briefly disconnects. Wake the drive, avoid aggressive sleep, or **clone the repo to an internal SSD** for day-to-day dev (most reliable fix).
+- **Out of memory** — `scripts/dev.mjs` sets a higher **V8 heap** unless **`NODE_OPTIONS`** already includes **`max-old-space-size`**. If it still dies, close other heavy apps or raise the limit manually.
+- **Watcher overload** — **`next.config.mjs`** ignores **`eng.traineddata`**, **`.cursor`**, and **`._*`** AppleDouble files in dev to cut noise. **`pnpm dev:turbo`** avoids Webpack entirely if problems persist.
+
+## After changing dev behavior
+
+- Smoke-test: **`pnpm dev`**, open **`http://localhost:3000`**, confirm **200** (not 500).
