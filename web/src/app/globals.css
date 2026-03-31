@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4f6f9;
+  --foreground: #0b1220;
+
+  /* mailer palette */
+  --rl-blue: #1b3f8a;
+  --rl-red: #c71f2d;
+  --rl-yellow: #f3d54e;
+  --rl-ink: #0b1220;
+  --rl-paper: #ffffff;
+  --rl-soft: #eef2f7;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-heading);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, Segoe UI, Roboto,
+    Arial, sans-serif;
+}
