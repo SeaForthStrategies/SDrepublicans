@@ -1,5 +1,17 @@
 import Image from "next/image";
+import {
+  mailerCardTitle,
+  mailerKicker,
+  mailerPhotoFrameCutout,
+  mailerPhotoSizes,
+  mailerPortraitKickerSlot,
+  mailerPortraitNameSlot,
+  mailerPortraitRow,
+  mailerQuoteBox,
+  mailerWebsitePill,
+} from "@/lib/mailer-layout";
 import { SectionBox } from "./SectionBox";
+import { mailerExplicitOrPillHref } from "@/lib/mailer-url";
 
 export function EndorsementCard({
   image,
@@ -8,6 +20,7 @@ export function EndorsementCard({
   titleKicker,
   title,
   urlText,
+  urlHref,
 }: {
   image: { src: string; alt: string };
   quote: string;
@@ -15,41 +28,51 @@ export function EndorsementCard({
   titleKicker?: string;
   title?: string;
   urlText?: string;
+  urlHref?: string;
 }) {
+  const websiteLink =
+    urlText && mailerExplicitOrPillHref(urlHref, urlText);
   return (
     <SectionBox className="h-full overflow-hidden">
-      <div className="grid gap-3 p-3 md:grid-cols-[190px,1fr] md:gap-4 md:p-4">
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md border border-black/10 bg-[var(--rl-soft)] md:aspect-auto md:h-full">
+      <div className={mailerPortraitRow}>
+        <div className={mailerPhotoFrameCutout}>
           <Image
             src={image.src}
             alt={image.alt}
             fill
-            className="object-cover"
-            sizes="(min-width: 768px) 190px, 100vw"
+            className="object-cover object-center"
+            sizes={mailerPhotoSizes}
           />
         </div>
 
-        <div className="flex flex-col gap-2">
-          {titleKicker ? (
-            <div className="text-[12px] font-extrabold text-[var(--rl-red)]">
-              {titleKicker}
+        <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-3 text-left">
+          <div className="flex flex-col gap-1">
+            <div className={mailerPortraitKickerSlot}>
+              {titleKicker ? <div className={mailerKicker}>{titleKicker}</div> : null}
             </div>
-          ) : null}
-          {title ? (
-            <div className="text-[18px] font-extrabold text-[var(--rl-blue)]">
-              {title}
+            <div className={mailerPortraitNameSlot}>
+              {title ? <div className={mailerCardTitle}>{title}</div> : null}
             </div>
-          ) : null}
-          <div className="rounded-md bg-[var(--rl-soft)] px-3 py-2 text-[14px] font-semibold leading-snug text-black md:text-[15px]">
-            {quote}
           </div>
+          <div className={mailerQuoteBox}>{quote}</div>
           {urlText ? (
-            <div className="text-right text-[13px] font-extrabold text-[var(--rl-blue)]">
-              {urlText}
+            <div className="pt-0.5">
+              {websiteLink ? (
+                <a
+                  href={websiteLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${mailerWebsitePill} inline-flex self-start`}
+                >
+                  {urlText}
+                </a>
+              ) : (
+                <span className={`${mailerWebsitePill} inline-flex self-start`}>{urlText}</span>
+              )}
             </div>
           ) : null}
           {byline ? (
-            <div className="text-[12px] font-extrabold tracking-wide text-[var(--rl-blue)]">
+            <div className="whitespace-pre-line text-[12px] font-extrabold tracking-wide text-[var(--primary)]">
               {byline}
             </div>
           ) : null}

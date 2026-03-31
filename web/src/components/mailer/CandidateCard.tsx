@@ -1,53 +1,76 @@
 import Image from "next/image";
+import {
+  mailerCardTitle,
+  mailerKicker,
+  mailerPhotoFrame,
+  mailerPhotoRing,
+  mailerPhotoSizes,
+  mailerPortraitKickerSlot,
+  mailerPortraitNameSlot,
+  mailerPortraitRow,
+  mailerWebsitePill,
+} from "@/lib/mailer-layout";
 import { SectionBox } from "./SectionBox";
 import type { CandidateCardData } from "@/content/mailer";
+import { mailerPillHref } from "@/lib/mailer-url";
 
 function HeadingLines({ text }: { text: string }) {
   return (
     <>
-      {text.split("\n").map((line) => (
-        <div key={line}>{line}</div>
+      {text.split("\n").map((line, i) => (
+        <div key={`${i}-${line}`}>{line}</div>
       ))}
     </>
   );
 }
 
 export function CandidateCard({ data }: { data: CandidateCardData }) {
+  const websiteHref = data.website ? mailerPillHref(data.website) : null;
+
   return (
     <SectionBox className="h-full overflow-hidden">
-      <div className="grid h-full grid-cols-[120px,1fr] gap-3 p-3 md:grid-cols-[150px,1fr] md:gap-4 md:p-4">
-        <div className="relative overflow-hidden rounded-md border border-black/10 bg-[var(--rl-soft)]">
+      <div className={mailerPortraitRow}>
+        <div className={mailerPhotoFrame}>
           <Image
             src={data.image.src}
             alt={data.image.alt}
             fill
-            className="object-cover"
-            sizes="(min-width: 768px) 150px, 120px"
+            className="object-cover object-top"
+            sizes={mailerPhotoSizes}
           />
+          <div className={mailerPhotoRing} />
         </div>
 
-        <div className="flex min-w-0 flex-col gap-2">
-          <div className="leading-tight">
-            <div className="text-[12px] font-extrabold text-[var(--rl-red)]">
-              <HeadingLines text={data.heading} />
-            </div>
-            <div className="text-[18px] font-extrabold text-[var(--rl-blue)] md:text-[20px]">
-              {data.name}
-            </div>
-            {data.subheading ? (
-              <div className="text-[12px] font-semibold text-black/80">
-                {data.subheading}
+        <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-3">
+          <div className="flex flex-col gap-1">
+            <div className={`${mailerPortraitKickerSlot} leading-tight`}>
+              <div className={mailerKicker}>
+                <HeadingLines text={data.heading} />
               </div>
-            ) : null}
+            </div>
+            <div className={mailerPortraitNameSlot}>
+              <div className={mailerCardTitle}>{data.name}</div>
+              {data.subheading ? (
+                <div className="mt-1 text-[12px] font-semibold text-[var(--muted)]">
+                  {data.subheading}
+                </div>
+              ) : null}
+            </div>
           </div>
 
-          <div className="flex flex-col gap-1 text-[12.5px] leading-snug text-black md:text-[13px]">
+          <div className="flex flex-col gap-2 text-[15px] leading-relaxed text-[var(--fg)]/92 md:text-[13px] md:leading-snug">
             {data.body.map((p, idx) => {
-              const isAllCaps = p === p.toUpperCase() && p.length > 6;
+              const firstLine = p.split("\n")[0] ?? p;
+              const isAllCaps =
+                firstLine === firstLine.toUpperCase() && firstLine.length > 6;
               return (
                 <p
                   key={`${data.id}-p-${idx}`}
-                  className={isAllCaps ? "font-extrabold tracking-wide" : ""}
+                  className={`text-pretty whitespace-pre-line ${
+                    isAllCaps
+                      ? "font-extrabold tracking-wide text-[var(--fg)]"
+                      : "text-[var(--fg)]/88"
+                  }`}
                 >
                   {p}
                 </p>
@@ -56,22 +79,33 @@ export function CandidateCard({ data }: { data: CandidateCardData }) {
           </div>
 
           {data.website ? (
-            <div className="mt-auto text-right text-[13px] font-extrabold text-[var(--rl-blue)]">
-              {data.website}
+            <div className="mt-auto pt-1 text-right">
+              {websiteHref ? (
+                <a
+                  href={websiteHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${mailerWebsitePill} no-underline transition-opacity hover:opacity-90`}
+                >
+                  {data.website}
+                </a>
+              ) : (
+                <span className={mailerWebsitePill}>{data.website}</span>
+              )}
             </div>
           ) : null}
 
           {data.noticeBox ? (
-            <div className="mt-2 rounded-md border border-black/10 bg-white px-3 py-2 text-[10px] leading-snug text-black/90">
-              <div className="mb-1 text-[10px] font-extrabold">
+            <div className="mt-2 rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-2)] px-3 py-2 text-[10px] leading-snug text-[var(--fg)]/90">
+              <div className="mb-1 text-[10px] font-extrabold tracking-wide text-[var(--fg)]">
                 {data.noticeBox.title}
               </div>
-              <div>{data.noticeBox.text}</div>
+              <div className="text-pretty whitespace-pre-line">{data.noticeBox.text}</div>
             </div>
           ) : null}
 
           {data.footnote ? (
-            <div className="text-[10px] text-black/70">{data.footnote}</div>
+            <div className="text-[10px] text-[var(--muted)]">{data.footnote}</div>
           ) : null}
         </div>
       </div>

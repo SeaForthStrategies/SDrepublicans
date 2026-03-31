@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
-import { Montserrat, Oswald } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
 
-const fontBody = Montserrat({
+const fontBody = Inter({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
@@ -19,6 +19,12 @@ export const metadata: Metadata = {
   description: "A digital recreation of the official endorsement guide mailer.",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,7 +35,9 @@ export default function RootLayout({
       lang="en"
       className={`${fontBody.variable} ${fontHeading.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full min-w-0 touch-manipulation flex flex-col overflow-x-clip">
+        {children}
+      </body>
     </html>
   );
 }

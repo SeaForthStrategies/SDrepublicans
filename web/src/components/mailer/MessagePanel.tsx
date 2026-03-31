@@ -1,33 +1,69 @@
 import Image from "next/image";
+import {
+  mailerKicker,
+  mailerMessageTitle,
+  mailerPhotoFrame,
+  mailerPhotoFrameCutout,
+  mailerPhotoRing,
+  mailerPhotoSizes,
+  mailerPortraitKickerSlot,
+  mailerPortraitNameSlot,
+  mailerPortraitRow,
+  mailerQuoteBox,
+} from "@/lib/mailer-layout";
 import { SectionBox } from "./SectionBox";
 import type { MessagePanelData } from "@/content/mailer";
 
 export function MessagePanel({ data }: { data: MessagePanelData }) {
+  const cropLeft = data.image.cropPortraitLeft === true;
+  const cropZoom = data.image.cropZoom ?? 2;
+
   return (
     <SectionBox className="h-full overflow-hidden">
-      <div className="grid h-full grid-cols-[140px,1fr] gap-3 p-3 md:grid-cols-[170px,1fr] md:gap-4 md:p-4">
-        <div className="relative overflow-hidden rounded-md border border-black/10 bg-[var(--rl-soft)]">
-          <Image
-            src={data.image.src}
-            alt={data.image.alt}
-            fill
-            className="object-cover"
-            sizes="(min-width: 768px) 170px, 140px"
-          />
+      <div className={mailerPortraitRow}>
+        <div className={cropLeft ? mailerPhotoFrameCutout : mailerPhotoFrame}>
+          {cropLeft ? (
+            <div className="absolute inset-0 overflow-hidden">
+              <div
+                className="relative h-full w-full"
+                style={{
+                  transform: `scale(${cropZoom})`,
+                  transformOrigin: "left center",
+                }}
+              >
+                <Image
+                  src={data.image.src}
+                  alt={data.image.alt}
+                  fill
+                  className="object-cover object-left object-top"
+                  sizes={mailerPhotoSizes}
+                />
+              </div>
+            </div>
+          ) : (
+            <>
+              <Image
+                src={data.image.src}
+                alt={data.image.alt}
+                fill
+                className="object-cover object-top"
+                sizes={mailerPhotoSizes}
+              />
+              <div className={mailerPhotoRing} />
+            </>
+          )}
         </div>
 
-        <div className="flex flex-col justify-between gap-2">
-          <div>
-            <div className="text-[12px] font-extrabold text-[var(--rl-red)]">
-              {data.kicker}
+        <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-3">
+          <div className="flex flex-col gap-1">
+            <div className={mailerPortraitKickerSlot}>
+              <div className={mailerKicker}>{data.kicker}</div>
             </div>
-            <div className="text-[16px] font-extrabold text-[var(--rl-blue)] md:text-[18px]">
-              {data.title}
+            <div className={mailerPortraitNameSlot}>
+              <div className={mailerMessageTitle}>{data.title}</div>
             </div>
           </div>
-          <div className="rounded-md bg-[var(--rl-soft)] px-3 py-2 text-[14px] font-semibold leading-snug text-black md:text-[15px]">
-            {data.quote}
-          </div>
+          <div className={`mt-auto ${mailerQuoteBox}`}>{data.quote}</div>
         </div>
       </div>
     </SectionBox>

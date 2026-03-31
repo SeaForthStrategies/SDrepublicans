@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // macOS AppleDouble sidecars (e.g. on external volumes)
+    "**/._*",
   ]),
 ]);
 

@@ -1,35 +1,136 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f4f6f9;
-  --foreground: #0b1220;
+  /* neutrals */
+  --bg: #f7f8fb;
+  --fg: #0b1220;
+  --muted: #5a6882;
+  --muted-2: #7b879c;
+  --surface: #ffffff;
+  --surface-2: #f2f5fb;
+  --surface-3: #eef2f9;
+  --border: rgba(15, 23, 42, 0.12);
+  --border-2: rgba(15, 23, 42, 0.08);
 
-  /* mailer palette */
-  --rl-blue: #1b3f8a;
-  --rl-red: #c71f2d;
-  --rl-yellow: #f3d54e;
-  --rl-ink: #0b1220;
-  --rl-paper: #ffffff;
-  --rl-soft: #eef2f7;
+  /* brand */
+  --primary: #123a8a; /* deep navy */
+  --primary-2: #0b2a66;
+  --accent: #cf1f2d; /* red */
+  --gold: #f2cc3c;
+
+  /* elevation */
+  --shadow-xs: 0 1px 0 rgba(2, 6, 23, 0.04);
+  --shadow-sm: 0 6px 18px rgba(2, 6, 23, 0.06);
+  --shadow-md: 0 18px 55px rgba(2, 6, 23, 0.12);
+
+  /* radius */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+
+  /* focus */
+  --ring: 0 0 0 4px rgba(18, 58, 138, 0.18);
+
+  /* motion */
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Tailwind theme tokens. Do not set --font-heading here — Next font sets it on
+   <html>; a self-referential var breaks computed styles in some browsers. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
   --font-sans: var(--font-body);
-  --font-heading: var(--font-heading);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: #070a12;
+    --fg: #eef2ff;
+    --muted: rgba(238, 242, 255, 0.72);
+    --muted-2: rgba(238, 242, 255, 0.58);
+    --surface: rgba(255, 255, 255, 0.06);
+    --surface-2: rgba(255, 255, 255, 0.04);
+    --surface-3: rgba(255, 255, 255, 0.03);
+    --border: rgba(226, 232, 240, 0.12);
+    --border-2: rgba(226, 232, 240, 0.08);
+    --shadow-xs: 0 1px 0 rgba(0, 0, 0, 0.35);
+    --shadow-sm: 0 10px 25px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 30px 90px rgba(0, 0, 0, 0.6);
+    --ring: 0 0 0 4px rgba(59, 130, 246, 0.25);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  overflow-x: clip;
+  background:
+    radial-gradient(
+      880px 480px at 50% -20%,
+      rgba(18, 58, 138, 0.1),
+      transparent 65%
+    ),
+    var(--bg);
+  color: var(--fg);
   font-family: var(--font-sans), system-ui, -apple-system, Segoe UI, Roboto,
     Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(242, 204, 60, 0.45);
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+  border-radius: 10px;
+}
+
+/* subtle scrollbars without “app” vibes */
+@media (pointer: fine) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(90, 104, 130, 0.35) transparent;
+  }
+}
+
+@keyframes mailer-section-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mailer-section-animate {
+  animation: mailer-section-in 0.6s var(--ease-out-expo) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mailer-section-animate {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.election-banner-wrap {
+  position: relative;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }

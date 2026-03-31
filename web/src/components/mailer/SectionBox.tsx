@@ -10,7 +10,7 @@ export function SectionBox({
   return (
     <section
       className={cn(
-        "rounded-md border border-black/15 bg-[var(--rl-paper)] shadow-[0_1px_0_rgba(0,0,0,0.06)]",
+        "relative overflow-hidden rounded-[var(--radius-lg)] border border-[var(--border-2)] bg-[var(--surface)] shadow-[var(--shadow-sm)]",
         className,
       )}
     >
