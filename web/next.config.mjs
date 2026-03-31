@@ -1,6 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
+        ],
+      },
+    ];
+  },
   images: {
     /**
      * Static mailer PNGs live under /public/mailer. Serving them directly avoids
@@ -14,10 +29,11 @@ const nextConfig = {
    * (ENOENT on rename of *.pack_ → *.pack) and can leave `.next` half-written —
    * dev 500s, missing chunk modules, or missing pages-manifest on build.
    * Memory cache avoids that; tradeoff is slower compiles and more RAM.
+   * Applied only in dev so production / Vercel use the default disk cache.
    */
   webpack: (config, { dev }) => {
-    config.cache = { type: "memory" };
     if (dev) {
+      config.cache = { type: "memory" };
       const cwd = process.cwd();
       const onExternalVolume =
         cwd.startsWith("/Volumes/") || cwd.startsWith("/mnt/");

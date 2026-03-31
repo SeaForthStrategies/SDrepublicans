@@ -1,0 +1,4 @@
+# Local OCR data (~5MB); only used by scripts/ocr-mailer.mjs, not the Next app.
+eng.traineddata
+# Dev-only asset tooling; not part of the production bundle.
+scripts/
