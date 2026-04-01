@@ -27,16 +27,17 @@ const nextConfig = {
   /**
    * On external / network volumes, webpack’s PackFileCacheStrategy often fails
    * (ENOENT on rename of *.pack_ → *.pack) and can leave `.next` half-written —
-   * dev 500s, missing chunk modules, or missing pages-manifest on build.
+   * dev 500s, missing chunk modules, or failed `next build` finalization.
    * Memory cache avoids that; tradeoff is slower compiles and more RAM.
-   * Applied only in dev so production / Vercel use the default disk cache.
+   * Production builds on normal disks (e.g. Vercel) keep the default disk cache.
    */
   webpack: (config, { dev }) => {
+    const cwd = process.cwd();
+    const onExternalVolume =
+      cwd.startsWith("/Volumes/") || cwd.startsWith("/mnt/");
+
     if (dev) {
       config.cache = { type: "memory" };
-      const cwd = process.cwd();
-      const onExternalVolume =
-        cwd.startsWith("/Volumes/") || cwd.startsWith("/mnt/");
       /**
        * String globs only. Merging Next’s prior `ignored` (often RegExp / mixed)
        * breaks webpack’s schema validation with WATCHPACK_POLLING (“ignored[0]
@@ -64,6 +65,8 @@ const nextConfig = {
           ignored: mergedIgnored,
         };
       }
+    } else if (onExternalVolume) {
+      config.cache = { type: "memory" };
     }
     return config;
   },

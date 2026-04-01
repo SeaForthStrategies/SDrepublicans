@@ -48,6 +48,8 @@ export type EndorsementCardData = {
   urlText?: string;
   /** Destination URL; if omitted, https:// is prepended to urlText when it looks like a domain */
   urlHref?: string;
+  /** Larger layout for primary endorsement */
+  featured?: boolean;
 };
 
 export type MailerGridItem =
@@ -59,6 +61,19 @@ export type MailerGridItem =
 export type MailerSection =
   | { type: "grid"; id: string; columns: 1 | 2 | 3; items: MailerGridItem[] }
   | { type: "footer"; id: string; text: string };
+
+/** Shared legal disclaimer (single source for footer; was also on a candidate card). */
+export const VOTER_NOTICE = {
+  title: "NOTICE TO VOTERS",
+  text:
+    "THIS DOCUMENT WAS PREPARED BY THE SAN DIEGO REPUBLICAN LEADERSHIP ENDORSEMENT GUIDE.\nNOT AN OFFICIAL SAMPLE BALLOT PARTY ORGANIZATION.\nAppearance in this mailer does not imply endorsement by any other organization or official unless it clearly states otherwise.\nAppearance is paid for and authorized by the appropriate candidate listed for that office, unless otherwise noted.\nThis mailer is not authorized by any candidate or ballot measure committee unless it clearly states otherwise.",
+} as const;
+
+/** Quick actions shown with election details (phone only; site URL omitted — this is the site). */
+export const QUICK_CONTACT = {
+  phoneDisplay: "760-519-3057",
+  phoneHref: "tel:7605193057",
+} as const;
 
 export type MailerPageData = {
   id: "home";
@@ -86,7 +101,8 @@ export type MailerHeader = {
     titleBottom: string;
   };
   headline: string;
-  primaryWebsite: string;
+  /** Optional; omitted when this page is the org site (no self-link). */
+  primaryWebsite?: string;
   headerRightImage?: ImageRef;
   /** Chairman photo + quote; rendered above the Endorsements section. */
   chairman?: {
@@ -104,7 +120,6 @@ export const mailer: { header: MailerHeader; page: MailerPageData } = {
       titleBottom: "LEADERSHIP",
     },
     headline: "OFFICIAL\nENDORSEMENT GUIDE",
-    primaryWebsite: "WWW.SDREPUBLICANS.COM",
     headerRightImage: {
       src: "/mailer/graphics/trump-issa.png",
       alt: "Congressman Darrell Issa and President Donald J. Trump",
@@ -112,8 +127,8 @@ export const mailer: { header: MailerHeader; page: MailerPageData } = {
     chairman: {
       image: { src: "/mailer/people/corey.png", alt: "Chairman Corey Gustafson" },
       quote:
-        "“This is the ONLY San Diego Republican Leadership Endorsement Guide.\nTo deliver your ballot in person, find a location at: www.SDRepublicans.com\nor have your ballot picked up by calling 760-519-3057.”",
-      byline: "SDREPUBLICANS.COM CHAIRMAN COREY GUSTAFSON",
+        "“This is the ONLY San Diego Republican Leadership Endorsement Guide.\nTo deliver your ballot in person, find an official drop-off location,\nor have your ballot picked up by calling 760-519-3057.”",
+      byline: "CHAIRMAN COREY GUSTAFSON",
     },
   },
   page: {
@@ -122,7 +137,6 @@ export const mailer: { header: MailerHeader; page: MailerPageData } = {
       top: {
         showWebsiteLine: false,
         showQuoteLine: false,
-        websiteText: "WWW.SDREPUBLICANS.COM",
         quoteText:
           "“We’re going to win so much,\nyou’re going to be so sick and tired of winning!”",
         quoteAttribution: "— President Donald J. Trump",
@@ -136,7 +150,7 @@ export const mailer: { header: MailerHeader; page: MailerPageData } = {
         {
           type: "grid",
           id: "endorsements",
-          columns: 2,
+          columns: 1,
           items: [
             {
               type: "endorsement",
@@ -152,6 +166,7 @@ export const mailer: { header: MailerHeader; page: MailerPageData } = {
                   "I balanced 12 budgets, built strong financial reserves, reduced homelessness, fought drug and shoplifting crimes.\nI’ve never raised taxes and never will.\nI cleared encampments with enforcement. I will fund Police, prosecutors and jails. I’ll prioritize good roads and evacuation routes. I speak clearly for common sense.\nGirls sports and facilities should be for girls only.\nSanctuary policies are wrong.",
                 urlText: "MayorFranklin.com",
                 urlHref: "https://mayorfranklin.com",
+                featured: true,
               } satisfies EndorsementCardData,
             },
             {
@@ -170,13 +185,20 @@ export const mailer: { header: MailerHeader; page: MailerPageData } = {
                 urlHref: "https://darrellissa.com",
               } satisfies EndorsementCardData,
             },
-          ],
-        },
-        {
-          type: "grid",
-          id: "grid-top",
-          columns: 3,
-          items: [
+            {
+              type: "endorsement",
+              data: {
+                id: "brian-jones",
+                image: {
+                  src: "/mailer/people/brian-jones.png",
+                  alt: "Senator Brian Jones",
+                },
+                titleKicker: "A message from:",
+                title: "Senate Republican Leader, Brian Jones",
+                quote:
+                  "“I am proud to join in endorsing these great leaders.\nThis is the ONLY San Diego Republican Leadership Endorsement Guide.\nDon’t be fooled by other misleading mailers.”",
+              } satisfies EndorsementCardData,
+            },
             {
               type: "candidate",
               data: {
@@ -198,20 +220,13 @@ export const mailer: { header: MailerHeader; page: MailerPageData } = {
                 footnote: "* indicates candidate has paid for mailer.",
               } satisfies CandidateCardData,
             },
-            {
-              type: "endorsement",
-              data: {
-                id: "brian-jones",
-                image: {
-                  src: "/mailer/people/brian-jones.png",
-                  alt: "Senator Brian Jones",
-                },
-                titleKicker: "A message from:",
-                title: "Senate Republican Leader, Brian Jones",
-                quote:
-                  "“I am proud to join in endorsing these great leaders.\nThis is the ONLY San Diego Republican Leadership Endorsement Guide.\nDon’t be fooled by other misleading mailers.”",
-              } satisfies EndorsementCardData,
-            },
+          ],
+        },
+        {
+          type: "grid",
+          id: "grid-top",
+          columns: 1,
+          items: [
             {
               type: "info",
               data: {
@@ -279,11 +294,6 @@ export const mailer: { header: MailerHeader; page: MailerPageData } = {
                   "Fight or Flee. That’s the choice that millions of common-sense Californians are facing as California’s cost-of-living skyrockets higher and higher.\nState politicians continue to enact extreme policies.",
                 ],
                 website: "",
-                noticeBox: {
-                  title: "NOTICE TO VOTERS",
-                  text:
-                    "THIS DOCUMENT WAS PREPARED BY THE SAN DIEGO REPUBLICAN LEADERSHIP ENDORSEMENT GUIDE.\nNOT AN OFFICIAL SAMPLE BALLOT PARTY ORGANIZATION.\nAppearance in this mailer does not imply endorsement by any other organization or official unless it clearly states otherwise.\nAppearance is paid for and authorized by the appropriate candidate listed for that office, unless otherwise noted.\nThis mailer is not authorized by any candidate or ballot measure committee unless it clearly states otherwise.",
-                },
               } satisfies CandidateCardData,
             },
           ],
@@ -326,6 +336,11 @@ export const mailer: { header: MailerHeader; page: MailerPageData } = {
               } satisfies CandidateCardData,
             },
           ],
+        },
+        {
+          type: "footer",
+          id: "voter-notice",
+          text: `${VOTER_NOTICE.title}\n\n${VOTER_NOTICE.text}`,
         },
       ],
     },

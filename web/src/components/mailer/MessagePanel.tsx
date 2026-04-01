@@ -1,5 +1,7 @@
 import Image from "next/image";
 import {
+  mailerCardHeaderBlock,
+  mailerCardTextCol,
   mailerKicker,
   mailerMessageTitle,
   mailerPhotoFrame,
@@ -8,6 +10,7 @@ import {
   mailerPhotoSizes,
   mailerPortraitKickerSlot,
   mailerPortraitNameSlot,
+  mailerPortraitPhotoCol,
   mailerPortraitRow,
   mailerQuoteBox,
 } from "@/lib/mailer-layout";
@@ -21,7 +24,9 @@ export function MessagePanel({ data }: { data: MessagePanelData }) {
   return (
     <SectionBox className="h-full overflow-hidden">
       <div className={mailerPortraitRow}>
-        <div className={cropLeft ? mailerPhotoFrameCutout : mailerPhotoFrame}>
+        <div
+          className={`${cropLeft ? mailerPhotoFrameCutout : mailerPhotoFrame} ${mailerPortraitPhotoCol}`}
+        >
           {cropLeft ? (
             <div className="absolute inset-0 overflow-hidden">
               <div
@@ -54,19 +59,18 @@ export function MessagePanel({ data }: { data: MessagePanelData }) {
           )}
         </div>
 
-        <div className="flex min-h-0 min-w-0 flex-1 flex-col items-center gap-3 text-center">
-          <div className="flex flex-col gap-1">
-            <div className={mailerPortraitKickerSlot}>
+        <div className={mailerCardTextCol}>
+          <div className={mailerCardHeaderBlock}>
+            <div className={`${mailerPortraitKickerSlot}`}>
               <div className={mailerKicker}>{data.kicker}</div>
             </div>
             <div className={mailerPortraitNameSlot}>
               <div className={mailerMessageTitle}>{data.title}</div>
             </div>
           </div>
-          <div className={`mt-auto ${mailerQuoteBox}`}>{data.quote}</div>
+          <div className={`${mailerQuoteBox} min-h-0 flex-1`}>{data.quote}</div>
         </div>
       </div>
     </SectionBox>
   );
 }
-

@@ -22,7 +22,7 @@ export function mailerExplicitOrPillHref(
   return mailerPillHref(urlText);
 }
 
-/** Hero line like `WWW.SDREPUBLICANS.COM` → https URL */
+/** Display label (e.g. `EXAMPLE.COM`) → https URL */
 export function mailerDisplayWebsiteHref(display: string): string {
   const t = display.trim().toLowerCase().replace(/^https?:\/\//i, "");
   return `https://${t}`;
