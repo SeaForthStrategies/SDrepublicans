@@ -22,6 +22,8 @@ export default function Home() {
           <HeaderBanner
             logoSrc={mailer.header.brandLeft.logo.src}
             headline={mailer.header.headline}
+            titleTop={mailer.header.brandLeft.titleTop}
+            titleBottom={mailer.header.brandLeft.titleBottom}
           />
 
           {mailer.header.chairman ? (
