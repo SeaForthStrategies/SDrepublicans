@@ -33,8 +33,13 @@ function renderGridItem(
 ): ReactNode {
   const featured =
     item.type === "endorsement" && item.data.featured === true;
+  /** Endorsements stay a 2×2 grid (two per row); featured is visual only on the card. */
   const spanFeatured =
-    featured && section.columns === 2 ? "md:col-span-2" : "";
+    featured &&
+    section.columns === 2 &&
+    section.id !== "endorsements"
+      ? "md:col-span-2"
+      : "";
 
   if (item.type === "candidate") {
     return (
