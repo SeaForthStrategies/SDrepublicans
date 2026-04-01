@@ -45,6 +45,10 @@ export const mailerHeroAccentBar =
 export const mailerHeroHeadline =
   "text-balance whitespace-pre-line font-[var(--font-heading)] text-[clamp(1.5rem,5vw+0.35rem,2rem)] leading-[1.08] tracking-[0.02em] md:text-[clamp(1.75rem,3.5vw+0.5rem,2.375rem)] md:leading-[1.06]";
 
+/** Hero title when full-width (no side image) — larger, centered */
+export const mailerHeroHeadlineWide =
+  "w-full max-w-none text-balance whitespace-pre-line text-center font-[var(--font-heading)] text-[clamp(1.875rem,6.5vw+0.45rem,2.75rem)] leading-[1.06] tracking-[0.02em] md:text-[clamp(2.35rem,4.5vw+1rem,3.65rem)] md:leading-[1.04]";
+
 export const mailerHeroWebsite =
   "text-[15px] font-extrabold tracking-wide text-white/90";
 
@@ -138,10 +142,6 @@ export const mailerPhotoSizes =
   "(max-width: 639px) 80px, (max-width: 767px) 96px, (min-width: 768px) 108px";
 
 export const mailerLogoSizes = "(max-width: 767px) 68px, (min-width: 768px) 80px";
-
-/** Header Issa + Trump portrait — sized for md+ to match hero column height */
-export const mailerTrumpSizes =
-  "(max-width: 767px) 224px, (min-width: 768px) 336px";
 
 /** Chairman headshot */
 export const mailerChairmanSizes = "(max-width: 767px) 96px, (min-width: 768px) 104px";

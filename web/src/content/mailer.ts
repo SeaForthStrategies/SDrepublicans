@@ -91,6 +91,8 @@ export type MailerPageData = {
     rightTop: string;
     rightBottom: string;
   };
+  /** Full-width card between the election strip and the endorsements grid (e.g. Issa message) */
+  fullWidthEndorsement?: EndorsementCardData;
   sections: MailerSection[];
 };
 
@@ -103,8 +105,7 @@ export type MailerHeader = {
   headline: string;
   /** Optional; omitted when this page is the org site (no self-link). */
   primaryWebsite?: string;
-  headerRightImage?: ImageRef;
-  /** Chairman photo + quote; rendered above the Endorsements section. */
+  /** Chairman photo + quote; rendered above the election strip. */
   chairman?: {
     image: ImageRef;
     quote: string;
@@ -120,10 +121,6 @@ export const mailer: { header: MailerHeader; page: MailerPageData } = {
       titleBottom: "LEADERSHIP",
     },
     headline: "OFFICIAL\nENDORSEMENT GUIDE",
-    headerRightImage: {
-      src: "/mailer/graphics/trump-issa.png",
-      alt: "Congressman Darrell Issa and President Donald J. Trump",
-    },
     chairman: {
       image: { src: "/mailer/people/corey.png", alt: "Chairman Corey Gustafson" },
       quote:
@@ -137,20 +134,30 @@ export const mailer: { header: MailerHeader; page: MailerPageData } = {
       top: {
         showWebsiteLine: false,
         showQuoteLine: false,
-        quoteText:
-          "“We’re going to win so much,\nyou’re going to be so sick and tired of winning!”",
-        quoteAttribution: "— President Donald J. Trump",
       },
       electionBanner: {
         left: "ELECTION DAY - TUESDAY, JUNE 2",
         rightTop: "POLLS OPEN 7 AM TO 8 PM",
         rightBottom: "MAIL BALLOTS MUST BE POSTMARKED BY JUNE 2",
       },
+      fullWidthEndorsement: {
+        id: "darrell-issa-message",
+        image: {
+          src: "/mailer/graphics/trump-issa.png",
+          alt: "Congressman Darrell Issa and President Donald J. Trump",
+        },
+        titleKicker: "A message from:",
+        title: "Congressman Darrell Issa",
+        quote:
+          "“These leaders will fight alongside President Trump and me to Make America Great Again!\nThey have been carefully vetted for their loyalty to Republican principles.\nThey oppose new taxes and bigger government.\nThey will fight to defend families and common-sense values.\nI am proud to join in endorsing each of them.”",
+        urlText: "darrellissa.com",
+        urlHref: "https://darrellissa.com",
+      } satisfies EndorsementCardData,
       sections: [
         {
           type: "grid",
           id: "endorsements",
-          columns: 2,
+          columns: 3,
           items: [
             {
               type: "endorsement",
@@ -167,22 +174,6 @@ export const mailer: { header: MailerHeader; page: MailerPageData } = {
                 urlText: "MayorFranklin.com",
                 urlHref: "https://mayorfranklin.com",
                 featured: true,
-              } satisfies EndorsementCardData,
-            },
-            {
-              type: "endorsement",
-              data: {
-                id: "darrell-issa-message",
-                image: {
-                  src: "/mailer/graphics/trump-issa.png",
-                  alt: "Congressman Darrell Issa and President Donald J. Trump",
-                },
-                titleKicker: "A message from:",
-                title: "Congressman Darrell Issa",
-                quote:
-                  "“These leaders will fight alongside President Trump and me to Make America Great Again!\nThey have been carefully vetted for their loyalty to Republican principles.\nThey oppose new taxes and bigger government.\nThey will fight to defend families and common-sense values.\nI am proud to join in endorsing each of them.”",
-                urlText: "darrellissa.com",
-                urlHref: "https://darrellissa.com",
               } satisfies EndorsementCardData,
             },
             {

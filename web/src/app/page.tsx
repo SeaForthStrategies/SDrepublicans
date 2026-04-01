@@ -1,12 +1,14 @@
 import { ChairmanBanner } from "@/components/mailer/ChairmanBanner";
+import { EndorsementCard } from "@/components/mailer/EndorsementCard";
 import { HeroElectionStrip } from "@/components/mailer/HeroElectionStrip";
 import { MailerPage } from "@/components/mailer/MailerPage";
 import { QUICK_CONTACT, mailer } from "@/content/mailer";
 import { HeaderBanner } from "@/components/mailer/HeaderBanner";
-import { mailerSectionTop } from "@/lib/mailer-layout";
+import { mailerContainer, mailerSectionTop } from "@/lib/mailer-layout";
 
 export default function Home() {
   const page = mailer.page;
+  const issa = page.fullWidthEndorsement;
 
   return (
     <div className="min-h-full min-w-0 overflow-x-clip bg-[var(--bg)]">
@@ -20,26 +22,39 @@ export default function Home() {
           <HeaderBanner
             logoSrc={mailer.header.brandLeft.logo.src}
             headline={mailer.header.headline}
-            rightImageSrc={mailer.header.headerRightImage?.src}
-            rightImageAlt={mailer.header.headerRightImage?.alt}
-            quoteText={page.top.quoteText}
-            quoteAttribution={page.top.quoteAttribution}
-          />
-
-          <HeroElectionStrip
-            left={page.electionBanner.left}
-            rightTop={page.electionBanner.rightTop}
-            rightBottom={page.electionBanner.rightBottom}
-            quickContact={QUICK_CONTACT}
           />
 
           {mailer.header.chairman ? (
-            <div className="mt-6 md:mt-8">
+            <div className="mt-6 md:mt-7">
               <ChairmanBanner
                 chairmanImageSrc={mailer.header.chairman.image.src}
                 chairmanImageAlt={mailer.header.chairman.image.alt}
                 quote={mailer.header.chairman.quote}
                 byline={mailer.header.chairman.byline}
+              />
+            </div>
+          ) : null}
+
+          <div className="mt-6 md:mt-7">
+            <HeroElectionStrip
+              left={page.electionBanner.left}
+              rightTop={page.electionBanner.rightTop}
+              rightBottom={page.electionBanner.rightBottom}
+              quickContact={QUICK_CONTACT}
+            />
+          </div>
+
+          {issa ? (
+            <div className={`${mailerContainer} mt-6 md:mt-8`}>
+              <EndorsementCard
+                image={issa.image}
+                quote={issa.quote}
+                byline={issa.byline}
+                titleKicker={issa.titleKicker}
+                title={issa.title}
+                urlText={issa.urlText}
+                urlHref={issa.urlHref}
+                featured={issa.featured}
               />
             </div>
           ) : null}

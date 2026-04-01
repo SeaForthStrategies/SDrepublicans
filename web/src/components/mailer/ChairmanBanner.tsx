@@ -5,7 +5,7 @@ import {
   mailerContainer,
 } from "@/lib/mailer-layout";
 
-/** Chairman photo + quote — leadership quote panel below the election strip. */
+/** Chairman photo + quote — above the election (poll) strip. */
 export function ChairmanBanner({
   chairmanImageSrc,
   chairmanImageAlt,

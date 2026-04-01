@@ -134,7 +134,9 @@ export function MailerPage({ page }: { page: MailerPageData }) {
 
               const gridCols =
                 section.columns === 3
-                  ? "grid-cols-1 lg:grid-cols-3"
+                  ? section.id === "endorsements"
+                    ? "grid-cols-1 md:grid-cols-3"
+                    : "grid-cols-1 lg:grid-cols-3"
                   : section.columns === 2
                     ? "grid-cols-1 md:grid-cols-2"
                     : "grid-cols-1";
