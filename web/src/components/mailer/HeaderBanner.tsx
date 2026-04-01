@@ -20,8 +20,7 @@ export function HeaderBanner({
   primaryWebsite?: string;
 }) {
   return (
-    <header className="relative overflow-hidden text-white">
-      <div className="absolute inset-0 bg-[linear-gradient(145deg,#050a14_0%,var(--primary-2)_38%,#0c1838_72%,#071027_100%)]" />
+    <header className="relative overflow-hidden bg-[linear-gradient(145deg,#050a14_0%,var(--primary-2)_38%,#0c1838_72%,#071027_100%)] pt-[env(safe-area-inset-top)] text-white">
       <div
         className="pointer-events-none absolute -right-16 top-0 h-[min(240px,55vw)] w-[min(240px,55vw)] rounded-full bg-[radial-gradient(circle_at_center,rgba(207,31,45,0.12),transparent_72%)]"
         aria-hidden

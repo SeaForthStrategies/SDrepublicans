@@ -49,6 +49,7 @@
  * dark mode (or between machines). This mailer is designed for one palette.
  */
 html {
+  margin: 0;
   color-scheme: light;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
@@ -62,6 +63,7 @@ html {
 }
 
 body {
+  margin: 0;
   overflow-x: clip;
   background:
     radial-gradient(

@@ -4,7 +4,7 @@ import { HeroElectionStrip } from "@/components/mailer/HeroElectionStrip";
 import { MailerPage } from "@/components/mailer/MailerPage";
 import { QUICK_CONTACT, mailer } from "@/content/mailer";
 import { HeaderBanner } from "@/components/mailer/HeaderBanner";
-import { mailerContainer, mailerSectionTop } from "@/lib/mailer-layout";
+import { mailerContainer } from "@/lib/mailer-layout";
 
 export default function Home() {
   const page = mailer.page;
@@ -18,7 +18,7 @@ export default function Home() {
           aria-hidden
         />
 
-        <div className={`${mailerSectionTop} pb-10 md:pb-14`}>
+        <div className="pb-10 md:pb-14">
           <HeaderBanner
             logoSrc={mailer.header.brandLeft.logo.src}
             headline={mailer.header.headline}
