@@ -31,16 +31,16 @@ export const mailerHeaderBlockGap = "gap-5 md:gap-7";
 
 /** Shared hero brand + headline (HeaderBanner + optional chairman strip) */
 export const mailerHeroLogoBox =
-  "relative h-[40px] w-[68px] shrink-0 sm:h-[44px] sm:w-[74px] md:h-[48px] md:w-[80px]";
+  "relative h-[56px] w-[96px] shrink-0 sm:h-[64px] sm:w-[110px] md:h-[76px] md:w-[132px]";
 
 export const mailerHeroBrandTop =
-  "font-[var(--font-heading)] text-[clamp(1.25rem,4vw+0.35rem,1.5rem)] tracking-[0.14em] md:text-[28px] md:tracking-[0.16em]";
+  "font-[var(--font-heading)] text-[clamp(1.5rem,5vw+0.35rem,2rem)] tracking-[0.12em] md:text-[clamp(2rem,3.2vw,2.875rem)] md:tracking-[0.14em]";
 
 export const mailerHeroBrandBottom =
-  "font-[var(--font-heading)] text-[clamp(0.8125rem,2.5vw+0.2rem,0.9375rem)] tracking-[0.42em] text-white/90 md:text-[16px] md:tracking-[0.5em]";
+  "font-[var(--font-heading)] text-[clamp(1rem,2.8vw+0.25rem,1.25rem)] tracking-[0.34em] text-white/90 md:text-[clamp(1.125rem,2vw,1.625rem)] md:tracking-[0.42em]";
 
 export const mailerHeroAccentBar =
-  "h-[3px] w-12 shrink-0 rounded-full bg-[var(--accent)] sm:w-16 md:w-20";
+  "h-[4px] w-16 shrink-0 rounded-full bg-[var(--accent)] sm:h-[4px] sm:w-20 md:h-[5px] md:w-28";
 
 export const mailerHeroHeadline =
   "text-balance whitespace-pre-line font-[var(--font-heading)] text-[clamp(1.5rem,5vw+0.35rem,2rem)] leading-[1.08] tracking-[0.02em] md:text-[clamp(1.75rem,3.5vw+0.5rem,2.375rem)] md:leading-[1.06]";
@@ -141,7 +141,9 @@ export const mailerPhotoRing =
 export const mailerPhotoSizes =
   "(max-width: 639px) 80px, (max-width: 767px) 96px, (min-width: 768px) 108px";
 
-export const mailerLogoSizes = "(max-width: 767px) 68px, (min-width: 768px) 80px";
+/** Hero elephant — match mailerHeroLogoBox widths for sharp Next/Image hints */
+export const mailerLogoSizes =
+  "(max-width: 639px) 192px, (max-width: 767px) 220px, (min-width: 768px) 264px";
 
 /** Chairman headshot */
 export const mailerChairmanSizes = "(max-width: 767px) 96px, (min-width: 768px) 104px";

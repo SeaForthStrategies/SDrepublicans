@@ -30,7 +30,7 @@ export function HeaderBanner({
 
       <div className={`${mailerHeaderInner} pb-6 md:pb-8`}>
         <div className="flex min-w-0 flex-col items-center gap-6 text-center md:gap-7">
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5 md:gap-6">
             <div className={mailerHeroLogoBox}>
               <Image
                 src={logoSrc}
@@ -49,7 +49,7 @@ export function HeaderBanner({
               >
                 REPUBLICAN
               </div>
-              <div className="mt-1 flex items-center justify-center gap-2">
+              <div className="mt-1.5 flex items-center justify-center gap-2.5 md:mt-2 md:gap-3">
                 <div
                   className={mailerHeroBrandBottom}
                   style={{ fontFamily: "var(--font-heading)" }}
