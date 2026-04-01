@@ -38,7 +38,7 @@ export function HeaderBanner({
       <div className="absolute inset-x-0 bottom-0 h-px bg-white/10" />
 
       <div className={`${mailerHeaderInner} pb-6 md:pb-8`}>
-        <div className="flex min-w-0 flex-col gap-6 md:flex-row md:items-start md:justify-between md:gap-8 lg:gap-10">
+        <div className="flex min-w-0 flex-col gap-6 md:flex-row md:items-stretch md:justify-between md:gap-8 lg:gap-10">
           <div className="flex min-w-0 flex-1 flex-col items-center space-y-5 text-center md:items-start md:text-left">
             <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:justify-start">
               <div className={mailerHeroLogoBox}>
@@ -100,13 +100,13 @@ export function HeaderBanner({
           </div>
 
           {rightImageSrc ? (
-            <div className="mx-auto flex shrink-0 justify-center md:mx-0 md:pt-0.5">
-              <div className="relative aspect-[3/4] w-[min(112px,28vw)] overflow-hidden rounded-[var(--radius-md)] border border-white/15 bg-black/25 shadow-md sm:w-[120px] md:w-[128px]">
+            <div className="mx-auto w-full max-w-[13.5rem] shrink-0 sm:max-w-[15rem] md:mx-0 md:max-w-[min(21rem,34vw)] md:self-stretch">
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[var(--radius-md)] border border-white/15 bg-black/25 shadow-md md:aspect-auto md:h-full md:min-h-0">
                 <Image
                   src={rightImageSrc}
                   alt={rightImageAlt ?? ""}
                   fill
-                  className="object-cover object-center"
+                  className="object-cover object-[center_22%]"
                   sizes={mailerTrumpSizes}
                   priority
                 />

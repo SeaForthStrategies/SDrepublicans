@@ -150,7 +150,7 @@ export const mailer: { header: MailerHeader; page: MailerPageData } = {
         {
           type: "grid",
           id: "endorsements",
-          columns: 1,
+          columns: 2,
           items: [
             {
               type: "endorsement",

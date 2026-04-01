@@ -139,8 +139,9 @@ export const mailerPhotoSizes =
 
 export const mailerLogoSizes = "(max-width: 767px) 68px, (min-width: 768px) 80px";
 
-/** Header Issa + Trump portrait — compact so hero stays balanced */
-export const mailerTrumpSizes = "(max-width: 767px) 112px, (min-width: 768px) 128px";
+/** Header Issa + Trump portrait — sized for md+ to match hero column height */
+export const mailerTrumpSizes =
+  "(max-width: 767px) 224px, (min-width: 768px) 336px";
 
 /** Chairman headshot */
 export const mailerChairmanSizes = "(max-width: 767px) 96px, (min-width: 768px) 104px";

@@ -141,36 +141,6 @@ export function MailerPage({ page }: { page: MailerPageData }) {
                     ? "Candidates"
                     : null;
 
-              /** Mayor Franklin full-width, then Issa + Brian Jones + Jordan Marks in 3 columns */
-              if (section.id === "endorsements" && section.items.length > 1) {
-                const [lead, ...rest] = section.items;
-                return (
-                  <Fragment key={section.id}>
-                    <section
-                      className="scroll-mt-8 space-y-5 md:space-y-6"
-                      aria-labelledby={
-                        sectionHeading ? `section-${section.id}` : undefined
-                      }
-                    >
-                      {sectionHeading ? (
-                        <SectionHeading
-                          id={`section-${section.id}`}
-                          title={sectionHeading}
-                        />
-                      ) : null}
-                      <div className="min-w-0">{renderGridItem(lead, section)}</div>
-                      {rest.length > 0 ? (
-                        <div
-                          className={`grid items-stretch ${mailerGridGap} grid-cols-1 md:grid-cols-3`}
-                        >
-                          {rest.map((item) => renderGridItem(item, section))}
-                        </div>
-                      ) : null}
-                    </section>
-                  </Fragment>
-                );
-              }
-
               return (
                 <Fragment key={section.id}>
                   <section
