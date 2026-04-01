@@ -120,7 +120,7 @@ export const mailer: { header: MailerHeader; page: MailerPageData } = {
       titleTop: "REPUBLICAN",
       titleBottom: "LEADERSHIP",
     },
-    headline: "OFFICIAL\nENDORSEMENT GUIDE",
+    headline: "OFFICIAL ENDORSEMENT GUIDE",
     chairman: {
       image: { src: "/mailer/people/corey.png", alt: "Chairman Corey Gustafson" },
       quote:
