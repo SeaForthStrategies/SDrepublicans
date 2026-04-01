@@ -5,6 +5,9 @@ import {
   mailerGridGap,
   mailerMainInner,
   mailerMetaStrip,
+  mailerSectionTitleRule,
+  mailerSectionTitleText,
+  mailerSectionTitleWrap,
   mailerStack,
 } from "@/lib/mailer-layout";
 import { CandidateCard } from "./CandidateCard";
@@ -41,7 +44,7 @@ export function MailerPage({ page }: { page: MailerPageData }) {
               <span />
             )}
             {page.top.showQuoteLine ? (
-              <div className="text-center text-[13px] font-semibold text-[var(--muted)] md:text-right md:text-[12px]">
+              <div className="text-center text-[13px] font-semibold text-[var(--muted)] md:text-[12px]">
                 <span className="text-[var(--fg)]/85">{page.top.quoteText}</span>{" "}
                 <span className="font-extrabold text-[var(--fg)]">
                   {page.top.quoteAttribution}
@@ -73,11 +76,15 @@ export function MailerPage({ page }: { page: MailerPageData }) {
 
             return (
               <Fragment key={section.id}>
-                <div className="space-y-3">
+                <div className="space-y-5 md:space-y-6">
                   {sectionHeading ? (
-                    <h2 className="font-[var(--font-heading)] text-[13px] font-extrabold uppercase tracking-[0.18em] text-[var(--accent)] md:text-[12px]">
-                      {sectionHeading}
-                    </h2>
+                    <div className={mailerSectionTitleWrap}>
+                      <h2 className={mailerSectionTitleText}>{sectionHeading}</h2>
+                      <div
+                        className={mailerSectionTitleRule}
+                        aria-hidden="true"
+                      />
+                    </div>
                   ) : null}
                   <div className={`grid items-stretch ${mailerGridGap} ${gridCols}`}>
                   {section.items.map((item: MailerGridItem) => {

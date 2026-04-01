@@ -54,7 +54,7 @@ export function MessagePanel({ data }: { data: MessagePanelData }) {
           )}
         </div>
 
-        <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-3">
+        <div className="flex min-h-0 min-w-0 flex-1 flex-col items-center gap-3 text-center">
           <div className="flex flex-col gap-1">
             <div className={mailerPortraitKickerSlot}>
               <div className={mailerKicker}>{data.kicker}</div>

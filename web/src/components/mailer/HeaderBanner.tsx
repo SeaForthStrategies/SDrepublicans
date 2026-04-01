@@ -37,9 +37,9 @@ export function HeaderBanner({
 
       <div className={mailerHeaderInner}>
         <div
-          className={`grid min-w-0 md:grid-cols-[auto,minmax(0,1fr)] md:items-start ${mailerHeaderBlockGap}`}
+          className={`flex min-w-0 flex-col items-center text-center ${mailerHeaderBlockGap}`}
         >
-          <div className="flex items-center justify-center gap-3 sm:gap-4 md:justify-start">
+          <div className="flex items-center justify-center gap-3 sm:gap-5">
             <div className={mailerHeroLogoBox}>
               <Image
                 src={logoSrc}
@@ -55,7 +55,7 @@ export function HeaderBanner({
               <div className={mailerHeroBrandTop} style={{ fontFamily: "var(--font-heading)" }}>
                 REPUBLICAN
               </div>
-              <div className="mt-1.5 flex items-center gap-2">
+              <div className="mt-1.5 flex items-center justify-center gap-2">
                 <div className={mailerHeroBrandBottom} style={{ fontFamily: "var(--font-heading)" }}>
                   LEADERSHIP
                 </div>
@@ -64,51 +64,49 @@ export function HeaderBanner({
             </div>
           </div>
 
-          <div className="flex min-w-0 flex-col gap-5 md:flex-row md:items-start md:justify-between md:gap-6 lg:gap-8">
-            <div className="flex min-w-0 flex-col gap-2 text-center md:min-w-[min(100%,280px)] md:flex-1 md:items-start md:text-left">
-              <div className={mailerHeroHeadline} style={{ fontFamily: "var(--font-heading)" }}>
-                {headline}
-              </div>
-              <a
-                href={mailerDisplayWebsiteHref(primaryWebsite)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${mailerHeroWebsite} inline-block underline decoration-white/35 underline-offset-2 transition-opacity hover:opacity-90`}
-              >
-                {primaryWebsite}
-              </a>
+          <div className="flex w-full min-w-0 max-w-[min(100%,720px)] flex-col items-center gap-2.5">
+            <div className={mailerHeroHeadline} style={{ fontFamily: "var(--font-heading)" }}>
+              {headline}
             </div>
-
-            {quoteText || rightImageSrc ? (
-              <div className="flex w-full min-w-0 flex-col items-center gap-3 md:max-w-[min(100%,380px)] md:flex-row md:items-start md:justify-end md:gap-4">
-                {quoteText ? (
-                  <div className="w-full max-w-[44ch] text-center text-[13px] font-semibold leading-snug text-white/85 md:text-left md:text-[13px]">
-                    <div className="text-pretty whitespace-pre-line">{quoteText}</div>
-                    {quoteAttribution ? (
-                      <div className="mt-1.5 text-[13px] font-extrabold text-white/90">
-                        {quoteAttribution}
-                      </div>
-                    ) : null}
-                  </div>
-                ) : (
-                  <span />
-                )}
-
-                {rightImageSrc ? (
-                  <div className="relative aspect-[3/4] w-[min(136px,42vw)] shrink-0 overflow-hidden rounded-[var(--radius-md)] md:w-[200px]">
-                    <Image
-                      src={rightImageSrc}
-                      alt={rightImageAlt ?? ""}
-                      fill
-                      className="object-cover object-center"
-                      sizes={mailerTrumpSizes}
-                      priority
-                    />
-                  </div>
-                ) : null}
-              </div>
-            ) : null}
+            <a
+              href={mailerDisplayWebsiteHref(primaryWebsite)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${mailerHeroWebsite} inline-block underline decoration-white/40 underline-offset-[3px] transition-opacity hover:opacity-90`}
+            >
+              {primaryWebsite}
+            </a>
           </div>
+
+          {quoteText || rightImageSrc ? (
+            <div className="flex w-full min-w-0 max-w-[min(100%,520px)] flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6">
+              {quoteText ? (
+                <div className="w-full max-w-[44ch] text-center text-[13px] font-semibold leading-snug text-white/85">
+                  <div className="text-pretty whitespace-pre-line">{quoteText}</div>
+                  {quoteAttribution ? (
+                    <div className="mt-1.5 text-[13px] font-extrabold text-white/90">
+                      {quoteAttribution}
+                    </div>
+                  ) : null}
+                </div>
+              ) : (
+                <span />
+              )}
+
+              {rightImageSrc ? (
+                <div className="relative aspect-[3/4] w-[min(136px,42vw)] shrink-0 overflow-hidden rounded-[var(--radius-md)] sm:w-[200px]">
+                  <Image
+                    src={rightImageSrc}
+                    alt={rightImageAlt ?? ""}
+                    fill
+                    className="object-cover object-center"
+                    sizes={mailerTrumpSizes}
+                    priority
+                  />
+                </div>
+              ) : null}
+            </div>
+          ) : null}
         </div>
       </div>
     </header>

@@ -22,6 +22,8 @@ pnpm start
 
 ## Deploy on Vercel
 
-In the Vercel dashboard, set the project **Root Directory** to **`web`** (this folder), then connect the repo and deploy. See the repository `README.md` for the full checklist.
+**Root Directory must be `web` (this folder).** Vercel detects **Next.js** from `package.json` (`next` in `dependencies`), `next.config.mjs`, and the App Router under `src/app/`. If Root Directory is the repository root (`.`), there is no `next` there and the framework shows as **Other** — the build will not behave as a Next.js app.
 
-`vercel.json` pins install/build commands; `.vercelignore` excludes local OCR data and `scripts/` from uploads (not used by the Next build).
+In the Vercel dashboard, set **Project → Settings → General → Root Directory** to **`web`**, then deploy. See the repository `README.md` for the full checklist.
+
+`vercel.json` sets `framework: "nextjs"` and pins `pnpm install --frozen-lockfile` + `pnpm build`. `.vercelignore` excludes local OCR data and `scripts/` from uploads (not used by the Next build).

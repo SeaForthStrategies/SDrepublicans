@@ -37,29 +37,26 @@ const nextConfig = {
       const cwd = process.cwd();
       const onExternalVolume =
         cwd.startsWith("/Volumes/") || cwd.startsWith("/mnt/");
-      const prevIgnored = config.watchOptions?.ignored;
-      const fromPrev = Array.isArray(prevIgnored)
-        ? prevIgnored
-        : prevIgnored != null
-          ? [prevIgnored]
-          : [];
+      /**
+       * String globs only. Merging Next’s prior `ignored` (often RegExp / mixed)
+       * breaks webpack’s schema validation with WATCHPACK_POLLING (“ignored[0]
+       * should be a non-empty string”).
+       */
       const mergedIgnored = [
-        ...(fromPrev.length
-          ? fromPrev
-          : ["**/node_modules/**", "**/.git/**", "**/.next/**"]),
-        /**
-         * Large OCR data + tooling dirs + AppleDouble files on external drives
-         * cause huge watcher churn and can take down dev (EMFILE / OOM).
-         */
+        "**/node_modules/**",
+        "**/.git/**",
+        "**/.next/**",
         "**/eng.traineddata",
         "**/.cursor/**",
         "**/._*",
       ];
+      const pollInterval =
+        Number(process.env.WATCHPACK_POLLING_INTERVAL) || 1000;
       if (onExternalVolume || process.env.NEXT_DEV_POLLING === "1") {
+        // Do not spread prior watchOptions — invalid ignored + poll breaks dev.
         config.watchOptions = {
-          ...config.watchOptions,
           ignored: mergedIgnored,
-          poll: Number(process.env.WATCHPACK_POLLING_INTERVAL) || 1000,
+          poll: pollInterval,
         };
       } else {
         config.watchOptions = {

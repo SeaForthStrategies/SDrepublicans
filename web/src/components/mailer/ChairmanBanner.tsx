@@ -24,9 +24,9 @@ export function ChairmanBanner({
 
       <div className={mailerHeaderInner}>
         <div
-          className={`flex w-full max-w-[920px] flex-col gap-4 border border-white/20 bg-white/10 md:flex-row md:items-center md:gap-5 ${mailerCardPadding}`}
+          className={`mx-auto flex w-full max-w-[920px] flex-col items-center gap-5 rounded-[var(--radius-lg)] border border-white/25 bg-white/[0.12] text-center shadow-[0_12px_40px_-18px_rgba(0,0,0,0.45)] backdrop-blur-[6px] md:flex-row md:items-center md:gap-6 ${mailerCardPadding}`}
         >
-          <div className="relative mx-auto h-[160px] w-[160px] shrink-0 overflow-hidden rounded-full border-2 border-white/35 bg-[#0d1830] md:mx-0 md:h-[188px] md:w-[188px]">
+          <div className="relative mx-auto h-[160px] w-[160px] shrink-0 overflow-hidden rounded-full border-2 border-white/35 bg-[#0d1830] md:h-[188px] md:w-[188px]">
             <Image
               src={chairmanImageSrc}
               alt={chairmanImageAlt}
@@ -36,7 +36,7 @@ export function ChairmanBanner({
               priority
             />
           </div>
-          <div className="min-w-0 flex-1 text-center md:text-left">
+          <div className="min-w-0 flex-1 text-center">
             <p className="text-pretty whitespace-pre-line text-[13px] font-semibold italic leading-snug text-white/90 md:text-[14px]">
               {quote}
             </p>

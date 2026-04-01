@@ -8,7 +8,8 @@ import {
   mailerPortraitKickerSlot,
   mailerPortraitNameSlot,
   mailerPortraitRow,
-  mailerWebsitePill,
+  mailerWebsiteButton,
+  mailerWebsiteButtonMuted,
 } from "@/lib/mailer-layout";
 import { SectionBox } from "./SectionBox";
 import type { CandidateCardData } from "@/content/mailer";
@@ -41,7 +42,7 @@ export function CandidateCard({ data }: { data: CandidateCardData }) {
           <div className={mailerPhotoRing} />
         </div>
 
-        <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-3">
+        <div className="flex min-h-0 min-w-0 flex-1 flex-col items-center gap-3 text-center">
           <div className="flex flex-col gap-1">
             <div className={`${mailerPortraitKickerSlot} leading-tight`}>
               <div className={mailerKicker}>
@@ -79,18 +80,21 @@ export function CandidateCard({ data }: { data: CandidateCardData }) {
           </div>
 
           {data.website ? (
-            <div className="mt-auto pt-1 text-right">
+            <div className="mt-auto w-full pt-2">
               {websiteHref ? (
                 <a
                   href={websiteHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${mailerWebsitePill} no-underline transition-opacity hover:opacity-90`}
+                  title={websiteHref}
+                  className={`${mailerWebsiteButton} no-underline`}
                 >
-                  {data.website}
+                  <span className="break-all">{data.website}</span>
                 </a>
               ) : (
-                <span className={mailerWebsitePill}>{data.website}</span>
+                <span className={mailerWebsiteButtonMuted}>
+                  <span className="break-all">{data.website}</span>
+                </span>
               )}
             </div>
           ) : null}

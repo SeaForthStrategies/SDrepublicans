@@ -8,7 +8,8 @@ import {
   mailerPortraitNameSlot,
   mailerPortraitRow,
   mailerQuoteBox,
-  mailerWebsitePill,
+  mailerWebsiteButton,
+  mailerWebsiteButtonMuted,
 } from "@/lib/mailer-layout";
 import { SectionBox } from "./SectionBox";
 import { mailerExplicitOrPillHref } from "@/lib/mailer-url";
@@ -30,8 +31,9 @@ export function EndorsementCard({
   urlText?: string;
   urlHref?: string;
 }) {
-  const websiteLink =
-    urlText && mailerExplicitOrPillHref(urlHref, urlText);
+  const websiteHref = urlText
+    ? mailerExplicitOrPillHref(urlHref, urlText)
+    : null;
   return (
     <SectionBox className="h-full overflow-hidden">
       <div className={mailerPortraitRow}>
@@ -45,7 +47,7 @@ export function EndorsementCard({
           />
         </div>
 
-        <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-3 text-left">
+        <div className="flex min-h-0 min-w-0 flex-1 flex-col items-center gap-3 text-center">
           <div className="flex flex-col gap-1">
             <div className={mailerPortraitKickerSlot}>
               {titleKicker ? <div className={mailerKicker}>{titleKicker}</div> : null}
@@ -56,18 +58,21 @@ export function EndorsementCard({
           </div>
           <div className={mailerQuoteBox}>{quote}</div>
           {urlText ? (
-            <div className="pt-0.5">
-              {websiteLink ? (
+            <div className="w-full pt-2">
+              {websiteHref ? (
                 <a
-                  href={websiteLink}
+                  href={websiteHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${mailerWebsitePill} inline-flex self-start`}
+                  title={websiteHref}
+                  className={`${mailerWebsiteButton} no-underline`}
                 >
-                  {urlText}
+                  <span className="break-all">{urlText}</span>
                 </a>
               ) : (
-                <span className={`${mailerWebsitePill} inline-flex self-start`}>{urlText}</span>
+                <span className={mailerWebsiteButtonMuted}>
+                  <span className="break-all">{urlText}</span>
+                </span>
               )}
             </div>
           ) : null}

@@ -6,14 +6,14 @@ export function InfoBox({ data }: { data: InfoBoxData }) {
   return (
     <SectionBox className="h-full overflow-hidden">
       <div className={mailerCardPadding}>
-        <div className="mb-3 flex items-center justify-between gap-3">
+        <div className="mb-3 flex flex-col items-center gap-2">
           <div className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-3 py-1 text-[12px] font-extrabold tracking-wide text-white shadow-[var(--shadow-xs)]">
             {data.title}
           </div>
           <div className="text-[12px] font-semibold text-[var(--muted)]">Alert</div>
         </div>
 
-        <div className="space-y-2 text-[13px] leading-snug text-[var(--fg)]/90">
+        <div className="space-y-2 text-center text-[13px] leading-snug text-[var(--fg)]/90">
           {data.bullets.map((b, idx) => (
             <p
               key={`${data.id}-${idx}`}

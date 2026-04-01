@@ -13,7 +13,9 @@ export default function Home() {
       <main className="relative min-w-0">
         <div className="absolute inset-x-0 top-0 -z-10 h-[min(780px,85vh)] [background:radial-gradient(980px_580px_at_50%_0%,rgba(18,58,138,0.10),transparent_72%)]" />
 
-        <section className={`mailer-section-animate ${mailerSectionTop}`}>
+        <section
+          className={`mailer-section-animate ${mailerSectionTop} pb-10 md:pb-16`}
+        >
           <HeaderBanner
             logoSrc={mailer.header.brandLeft.logo.src}
             headline={mailer.header.headline}

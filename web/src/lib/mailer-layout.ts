@@ -12,22 +12,22 @@ export const mailerPageX =
 export const mailerContainer =
   "mx-auto w-full max-w-[1120px] pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))]";
 
-export const mailerSectionTop = "pt-8 md:pt-16";
+export const mailerSectionTop = "pt-6 md:pt-14";
 
 /** Hero / header vertical band (taller than body sections) */
 export const mailerHeaderInner =
-  "relative mx-auto w-full max-w-[1120px] py-6 md:py-10 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))]";
+  "relative mx-auto w-full max-w-[1120px] py-7 md:py-12 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))]";
 
 export const mailerMainInner =
-  "relative mx-auto w-full max-w-[1120px] py-5 md:py-10 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))]";
+  "relative mx-auto w-full max-w-[1120px] py-8 md:py-14 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))]";
 
-export const mailerStack = "space-y-4 md:space-y-6";
+export const mailerStack = "space-y-8 md:space-y-10";
 
 /** Space between cards in a section grid */
-export const mailerGridGap = "gap-5 md:gap-6";
+export const mailerGridGap = "gap-6 md:gap-7";
 
 /** Header / hero row spacing */
-export const mailerHeaderBlockGap = "gap-4 md:gap-6";
+export const mailerHeaderBlockGap = "gap-5 md:gap-7";
 
 /** Shared hero brand + headline (HeaderBanner + optional chairman strip) */
 export const mailerHeroLogoBox =
@@ -53,11 +53,19 @@ export const mailerCardPadding = "p-4 sm:p-5 md:p-6";
 
 /** Shared quote / endorsement text panel */
 export const mailerQuoteBox =
-  "text-pretty whitespace-pre-line rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-2)] px-3 py-2.5 text-[15px] font-semibold leading-snug text-[var(--fg)]/92 md:py-2";
+  "text-pretty whitespace-pre-line rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-2)] px-3.5 py-3 text-center text-[15px] font-semibold leading-relaxed text-[var(--fg)]/92 shadow-[var(--shadow-xs)] md:px-4 md:py-2.5 md:leading-snug";
 
 /** Website / URL chip (min ~44px tap height on small screens) */
 export const mailerWebsitePill =
   "inline-flex min-h-[44px] min-w-0 max-w-full items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-2)] px-4 py-2 text-[14px] font-extrabold tracking-wide text-[var(--primary)] sm:min-h-0 sm:px-3 sm:py-1 sm:text-[13px]";
+
+/** Primary card link: full-width button look; URL is the label (wrap long hosts). */
+export const mailerWebsiteButton =
+  "relative z-10 inline-flex w-full min-h-[44px] min-w-0 cursor-pointer items-center justify-center rounded-[var(--radius-md)] border border-[var(--primary-2)]/25 bg-[var(--primary)] px-3 py-2.5 text-center text-[13px] font-extrabold leading-snug tracking-wide text-white shadow-[var(--shadow-xs)] transition-[filter,transform] hover:brightness-110 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface)] sm:min-h-[40px] sm:px-4 sm:text-[12px] md:text-[13px]";
+
+/** Non-interactive placeholder when a URL label has no valid href */
+export const mailerWebsiteButtonMuted =
+  "inline-flex w-full min-h-[44px] min-w-0 cursor-not-allowed items-center justify-center rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-2)] px-3 py-2.5 text-center text-[13px] font-extrabold leading-snug tracking-wide text-[var(--muted)] sm:min-h-[40px] sm:px-4 sm:text-[12px]";
 
 /** Red kicker line (office, “A message from”, etc.) */
 export const mailerKicker =
@@ -68,10 +76,10 @@ export const mailerKicker =
  * kickers and names line up across columns in the same grid row.
  */
 export const mailerPortraitKickerSlot =
-  "flex min-h-[4.25rem] shrink-0 flex-col justify-start leading-snug sm:min-h-[4.5rem] md:min-h-[4.75rem]";
+  "flex min-h-[4.25rem] shrink-0 flex-col items-center justify-center text-center leading-snug sm:min-h-[4.5rem] md:min-h-[4.75rem]";
 
 export const mailerPortraitNameSlot =
-  "flex min-h-[3.25rem] flex-col justify-start sm:min-h-[3.5rem] md:min-h-[3.75rem]";
+  "flex min-h-[3.25rem] flex-col items-center justify-center text-center sm:min-h-[3.5rem] md:min-h-[3.75rem]";
 
 /** Candidate name + endorsement title (same scale) */
 export const mailerCardTitle =
@@ -82,7 +90,16 @@ export const mailerMessageTitle = mailerCardTitle;
 
 /** Page meta strip (website + quote line) inside MailerPage */
 export const mailerMetaStrip =
-  "mb-5 flex flex-col gap-3 rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] px-4 py-3.5 text-center text-[13px] leading-snug shadow-[var(--shadow-sm)] md:flex-row md:items-center md:justify-between md:gap-2 md:text-left md:text-[12px]";
+  "mb-7 flex flex-col items-center gap-3 rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] px-5 py-4 text-center text-[13px] leading-relaxed shadow-[var(--shadow-sm)] md:gap-2.5 md:px-6 md:py-4 md:text-[12px]";
+
+/** Section titles (Endorsements / Candidates) — label + accent */
+export const mailerSectionTitleWrap = "mb-1 flex flex-col items-center gap-3";
+
+export const mailerSectionTitleText =
+  "text-center font-[var(--font-heading)] text-[13px] font-extrabold uppercase tracking-[0.2em] text-[var(--accent)] md:text-[12px]";
+
+export const mailerSectionTitleRule =
+  "h-px w-16 rounded-full bg-[linear-gradient(90deg,transparent,rgba(207,31,45,0.85),rgba(242,204,60,0.9),rgba(18,58,138,0.75),transparent)] opacity-95 md:w-20";
 
 /** Optional section divider */
 export const mailerSectionDivider =
@@ -97,11 +114,11 @@ export const mailerPortraitRow =
 
 /** Standard framed 3:4 portrait slot */
 export const mailerPhotoFrame =
-  "relative aspect-[3/4] w-full max-w-[108px] shrink-0 self-start overflow-hidden rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-3)] shadow-[var(--shadow-xs)] sm:max-w-[120px] md:max-w-none md:w-[176px]";
+  "relative mx-auto aspect-[3/4] w-full max-w-[108px] shrink-0 self-start overflow-hidden rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface-3)] shadow-[var(--shadow-xs)] sm:max-w-[120px] md:max-w-none md:w-[176px]";
 
 /** Portrait slot without border (e.g. composite crop / cutout look) */
 export const mailerPhotoFrameCutout =
-  "relative aspect-[3/4] w-full max-w-[108px] shrink-0 self-start overflow-hidden rounded-[var(--radius-md)] bg-transparent sm:max-w-[120px] md:max-w-none md:w-[176px]";
+  "relative mx-auto aspect-[3/4] w-full max-w-[108px] shrink-0 self-start overflow-hidden rounded-[var(--radius-md)] bg-transparent sm:max-w-[120px] md:max-w-none md:w-[176px]";
 
 export const mailerPhotoRing =
   "pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10";

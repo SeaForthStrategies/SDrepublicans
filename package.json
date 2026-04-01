@@ -1,0 +1,9 @@
+{
+  "name": "sdrepublicans",
+  "private": true,
+  "packageManager": "pnpm@10.32.1",
+  "description": "Monorepo root. The Next.js app is in ./web — set Vercel Root Directory to web for deployment.",
+  "scripts": {
+    "build": "pnpm -C web build"
+  }
+}
