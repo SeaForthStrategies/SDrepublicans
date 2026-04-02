@@ -26,4 +26,4 @@ pnpm start
 
 In the Vercel dashboard, set **Project → Settings → General → Root Directory** to **`web`**, then deploy. See the repository `README.md` for the full checklist.
 
-`vercel.json` sets `framework: "nextjs"` and pins `pnpm install --frozen-lockfile` + `pnpm build`. `.vercelignore` excludes local OCR data and `scripts/` from uploads (not used by the Next build).
+`vercel.json` sets `framework: "nextjs"` and pins `pnpm install --frozen-lockfile` + `pnpm run build`. `.vercelignore` excludes local OCR data and `scripts/` from uploads (not used by the Next build).

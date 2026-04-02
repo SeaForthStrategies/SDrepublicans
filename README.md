@@ -11,7 +11,7 @@ The repository root includes a minimal `package.json` (for tooling and `pnpm -C 
 3. Under **Framework Preset**, choose **Next.js** if it is not already selected (after Root Directory is `web`, it should usually detect automatically).
 4. **Node.js:** the app targets **Node 20** (`web/.nvmrc` and `package.json` `engines`). In Vercel **Settings → General → Node.js Version**, pick **20.x** (or leave default if it follows `.nvmrc`).
 5. No environment variables are required for the current build.
-6. Deploy. Production builds use `pnpm install --frozen-lockfile` and `pnpm build` from `web/vercel.json`.
+6. Deploy. Production builds use `pnpm install --frozen-lockfile` and `pnpm run build` from `web/vercel.json` (with **Root Directory** `web`).
 
 ### If the project already shows “Other”
 

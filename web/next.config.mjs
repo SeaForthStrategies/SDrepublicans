@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  /** Hide `X-Powered-By: Next.js` on Vercel / Node */
+  poweredByHeader: false,
   async headers() {
     return [
       {
