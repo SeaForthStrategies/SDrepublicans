@@ -9,8 +9,23 @@ import type { MailerHeader, MailerPageData } from "@/content/mailer";
 const phoneBtn =
   "inline-flex min-h-[52px] items-center justify-center rounded-[var(--radius-md)] border-2 border-[var(--primary-2)] bg-white px-6 py-3.5 text-center text-[clamp(1rem,0.5vw+0.75rem,1.125rem)] font-extrabold uppercase tracking-wide text-[var(--primary-2)] shadow-[var(--shadow-xs)] transition-colors hover:bg-[var(--surface-2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:min-h-[50px] md:px-7";
 
-const heroLogoSizes =
-  "(max-width: 639px) 88px, (max-width: 767px) 100px, 120px";
+const heroFlankSizes =
+  "(max-width: 639px) 44px, (max-width: 767px) 52px, 60px";
+
+function HeroFlankElephant({ logoSrc }: { logoSrc: string }) {
+  return (
+    <div className="relative h-11 w-11 shrink-0 sm:h-12 sm:w-12 md:h-14 md:w-14">
+      <Image
+        src={logoSrc}
+        alt=""
+        fill
+        sizes={heroFlankSizes}
+        className="object-contain drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)]"
+        aria-hidden
+      />
+    </div>
+  );
+}
 
 /** Matches “OFFICIAL ENDORSEMENT GUIDE” — tuned so long first line wraps cleanly on narrow phones */
 const heroHeadlineScale =
@@ -53,39 +68,33 @@ export function SiteHero({
           className={`${mailerContainer} relative z-10 flex w-full flex-col items-center pb-12 pt-[max(1.25rem,env(safe-area-inset-top))] md:pb-16 md:pt-[max(1.75rem,env(safe-area-inset-top))]`}
         >
           <div className="flex w-full flex-col items-center text-center">
-            <div className="flex w-full max-w-full flex-col items-center justify-center gap-4 min-[400px]:flex-row min-[400px]:flex-wrap min-[400px]:gap-4 sm:gap-5 md:gap-6">
-              <div className="relative h-[4.5rem] w-[4.5rem] shrink-0 sm:h-[5.25rem] sm:w-[5.25rem] md:h-28 md:w-28">
-                <Image
-                  src={brandLeft.logo.src}
-                  alt={brandLeft.logo.alt}
-                  fill
-                  sizes={heroLogoSizes}
-                  className="object-contain drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)]"
-                  priority
-                />
-              </div>
-              <div className="w-full min-w-0 max-w-full text-center min-[400px]:w-auto min-[400px]:max-w-xl sm:max-w-2xl md:max-w-3xl">
-                <p
-                  className={`${heroHeadlineScale} text-pretty tracking-[0.02em] sm:tracking-[0.03em] md:tracking-[0.035em]`}
-                >
-                  {brandLeft.titleTop}
-                </p>
-                <div className="mt-2 flex min-w-0 items-center justify-center gap-2 sm:mt-2.5 sm:gap-2.5 md:mt-3">
-                  <span
-                    className={`${heroHeadlineScale} shrink-0 tracking-[0.1em] sm:tracking-[0.16em] md:tracking-[0.2em] lg:tracking-[0.24em]`}
+            <div className="flex w-full justify-center">
+              <div className="inline-flex max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-3 sm:gap-x-4 md:gap-x-6 lg:gap-x-8">
+                <HeroFlankElephant logoSrc={brandLeft.logo.src} />
+                <div className="min-w-0 max-w-[min(100%,34rem)] text-center sm:max-w-xl md:max-w-2xl">
+                  <p
+                    className={`${heroHeadlineScale} text-pretty tracking-[0.02em] sm:tracking-[0.03em] md:tracking-[0.035em]`}
                   >
-                    {brandLeft.titleBottom}
-                  </span>
-                  <span
-                    className="h-0.5 w-14 shrink-0 bg-[var(--accent)] sm:w-16 md:h-1 md:w-24 lg:w-28"
-                    aria-hidden
-                  />
+                    {brandLeft.titleTop}
+                  </p>
+                  <div className="mt-2 flex min-w-0 items-center justify-center gap-2 sm:mt-2.5 sm:gap-2.5 md:mt-3">
+                    <span
+                      className={`${heroHeadlineScale} shrink-0 tracking-[0.1em] sm:tracking-[0.16em] md:tracking-[0.2em] lg:tracking-[0.24em]`}
+                    >
+                      {brandLeft.titleBottom}
+                    </span>
+                    <span
+                      className="h-0.5 w-12 shrink-0 bg-[var(--accent)] sm:w-14 md:h-1 md:w-20 lg:w-24"
+                      aria-hidden
+                    />
+                  </div>
                 </div>
+                <HeroFlankElephant logoSrc={brandLeft.logo.src} />
               </div>
             </div>
 
             <h1
-              className={`${heroHeadlineScale} mx-auto mt-5 w-full max-w-4xl text-balance tracking-[0.02em] sm:mt-6 sm:tracking-[0.03em] md:mt-7 md:tracking-[0.035em] lg:tracking-[0.04em]`}
+              className={`${heroHeadlineScale} mx-auto mt-5 w-full max-w-4xl text-balance text-center tracking-[0.02em] sm:mt-6 sm:tracking-[0.03em] md:mt-7 md:tracking-[0.035em] lg:tracking-[0.04em]`}
             >
               {headline}
             </h1>
