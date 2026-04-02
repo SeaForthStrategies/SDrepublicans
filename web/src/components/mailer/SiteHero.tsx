@@ -12,6 +12,10 @@ const phoneBtn =
 const heroLogoSizes =
   "(max-width: 639px) 88px, (max-width: 767px) 100px, 120px";
 
+/** Large masthead elephant at right — scales with column */
+const heroRightElephantSizes =
+  "(max-width: 767px) 200px, (max-width: 1023px) 280px, 400px";
+
 /** Matches “OFFICIAL ENDORSEMENT GUIDE” — tuned so long first line wraps cleanly on narrow phones */
 const heroHeadlineScale =
   "font-[var(--font-heading)] text-[clamp(1rem,4.25vw+0.45rem,2.5rem)] font-extrabold uppercase leading-[1.06] text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]";
@@ -48,52 +52,57 @@ export function SiteHero({
           className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
           aria-hidden
         />
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[clamp(3.25rem,10vw,6rem)] overflow-hidden"
-          aria-hidden
-        >
-          <div className="absolute left-[44%] top-0 h-[min(120vw,52rem)] w-[min(220vw,90rem)] -translate-x-1/2 -translate-y-[79%] rounded-[100%] bg-[#f2dc3c] sm:left-[46%] sm:-translate-y-[80%] md:left-1/2 md:-translate-y-[81%]" />
-        </div>
 
         <div
-          className={`${mailerContainer} relative z-10 flex w-full flex-col items-center pb-12 pt-[max(1.25rem,env(safe-area-inset-top))] md:pb-16 md:pt-[max(1.75rem,env(safe-area-inset-top))]`}
+          className={`${mailerContainer} relative z-10 pb-12 pt-[max(1.25rem,env(safe-area-inset-top))] md:pb-16 md:pt-[max(1.75rem,env(safe-area-inset-top))]`}
         >
-          <div className="flex w-full flex-col items-center">
-            <div className="flex w-full justify-center">
-              <div className="flex max-w-full flex-row items-center justify-center gap-4 sm:gap-5 md:gap-6">
-                <div className="relative h-[4.5rem] w-[4.5rem] shrink-0 sm:h-[5.25rem] sm:w-[5.25rem] md:h-28 md:w-28">
-                  <Image
-                    src={brandLeft.logo.src}
-                    alt={brandLeft.logo.alt}
-                    fill
-                    sizes={heroLogoSizes}
-                    className="object-contain drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)]"
-                    priority
-                  />
-                </div>
-                <div className="min-w-0 max-w-[min(100%,42rem)] text-left sm:max-w-2xl md:max-w-3xl">
-                  <p
-                    className={`${heroHeadlineScale} text-pretty tracking-[0.02em] sm:tracking-[0.03em] md:tracking-[0.035em]`}
+          <div className="grid w-full grid-cols-[minmax(0,1fr)_minmax(5.75rem,34%)] grid-rows-[auto_auto] items-start gap-x-3 gap-y-4 sm:gap-x-5 md:grid-cols-[minmax(0,1fr)_min(42%,min(22rem,44vw))] md:gap-x-8 lg:gap-x-12">
+            <div className="col-start-1 row-start-1 flex min-w-0 flex-row items-center justify-start gap-3 sm:gap-4 md:gap-6">
+              <div className="relative h-[4.5rem] w-[4.5rem] shrink-0 sm:h-[5.25rem] sm:w-[5.25rem] md:h-28 md:w-28">
+                <Image
+                  src={brandLeft.logo.src}
+                  alt={brandLeft.logo.alt}
+                  fill
+                  sizes={heroLogoSizes}
+                  className="object-contain drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)]"
+                  priority
+                />
+              </div>
+              <div className="min-w-0 flex-1 text-left">
+                <p
+                  className={`${heroHeadlineScale} text-pretty tracking-[0.02em] sm:tracking-[0.03em] md:tracking-[0.035em]`}
+                >
+                  {brandLeft.titleTop}
+                </p>
+                <div className="mt-2 flex min-w-0 flex-wrap items-center justify-start gap-2 sm:mt-2.5 sm:gap-2.5 md:mt-3">
+                  <span
+                    className={`${heroHeadlineScale} shrink-0 tracking-[0.1em] sm:tracking-[0.16em] md:tracking-[0.2em] lg:tracking-[0.24em]`}
                   >
-                    {brandLeft.titleTop}
-                  </p>
-                  <div className="mt-2 flex min-w-0 flex-wrap items-center justify-start gap-2 sm:mt-2.5 sm:gap-2.5 md:mt-3">
-                    <span
-                      className={`${heroHeadlineScale} shrink-0 tracking-[0.1em] sm:tracking-[0.16em] md:tracking-[0.2em] lg:tracking-[0.24em]`}
-                    >
-                      {brandLeft.titleBottom}
-                    </span>
-                    <span
-                      className="h-0.5 w-14 shrink-0 bg-[var(--accent)] sm:w-16 md:h-1 md:w-24 lg:w-28"
-                      aria-hidden
-                    />
-                  </div>
+                    {brandLeft.titleBottom}
+                  </span>
+                  <span
+                    className="h-0.5 w-14 shrink-0 bg-[var(--accent)] sm:w-16 md:h-1 md:w-24 lg:w-28"
+                    aria-hidden
+                  />
                 </div>
               </div>
             </div>
 
+            <div className="relative col-start-2 row-span-2 row-start-1 flex min-h-[9rem] items-end justify-center self-stretch sm:min-h-[11rem] md:min-h-[min(52vw,19rem)] md:items-end lg:min-h-[min(48vw,22rem)] xl:min-h-[min(44vw,24rem)]">
+              <div className="relative h-full min-h-[8.5rem] w-full sm:min-h-[10rem] md:min-h-[12rem]">
+                <Image
+                  src={brandLeft.logo.src}
+                  alt=""
+                  fill
+                  sizes={heroRightElephantSizes}
+                  className="object-contain object-bottom drop-shadow-[0_4px_18px_rgba(0,0,0,0.4)]"
+                  aria-hidden
+                />
+              </div>
+            </div>
+
             <h1
-              className={`${heroHeadlineScale} mx-auto mt-5 w-full max-w-4xl text-balance text-center tracking-[0.02em] sm:mt-6 sm:tracking-[0.03em] md:mt-7 md:tracking-[0.035em] lg:tracking-[0.04em]`}
+              className={`${heroHeadlineScale} col-start-1 row-start-2 w-full max-w-4xl text-balance text-left tracking-[0.02em] md:max-w-[min(100%,42rem)] md:pr-2 md:pt-1 lg:max-w-[min(100%,46rem)] lg:pt-2`}
             >
               {headline}
             </h1>
