@@ -52,34 +52,36 @@ export function SiteHero({
         <div
           className={`${mailerContainer} relative z-10 flex w-full flex-col items-center pb-12 pt-[max(1.25rem,env(safe-area-inset-top))] md:pb-16 md:pt-[max(1.75rem,env(safe-area-inset-top))]`}
         >
-          <div className="flex w-full flex-col items-center text-center">
-            <div className="flex w-full max-w-full flex-col items-center justify-center gap-4 sm:gap-5 md:gap-6">
-              <div className="relative mx-auto h-[4.5rem] w-[4.5rem] shrink-0 sm:h-[5.25rem] sm:w-[5.25rem] md:h-28 md:w-28">
-                <Image
-                  src={brandLeft.logo.src}
-                  alt={brandLeft.logo.alt}
-                  fill
-                  sizes={heroLogoSizes}
-                  className="object-contain drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)]"
-                  priority
-                />
-              </div>
-              <div className="mx-auto w-full min-w-0 max-w-full text-center sm:max-w-2xl md:max-w-3xl">
-                <p
-                  className={`${heroHeadlineScale} text-pretty tracking-[0.02em] sm:tracking-[0.03em] md:tracking-[0.035em]`}
-                >
-                  {brandLeft.titleTop}
-                </p>
-                <div className="mt-2 flex min-w-0 items-center justify-center gap-2 sm:mt-2.5 sm:gap-2.5 md:mt-3">
-                  <span
-                    className={`${heroHeadlineScale} shrink-0 tracking-[0.1em] sm:tracking-[0.16em] md:tracking-[0.2em] lg:tracking-[0.24em]`}
-                  >
-                    {brandLeft.titleBottom}
-                  </span>
-                  <span
-                    className="h-0.5 w-14 shrink-0 bg-[var(--accent)] sm:w-16 md:h-1 md:w-24 lg:w-28"
-                    aria-hidden
+          <div className="flex w-full flex-col items-center">
+            <div className="flex w-full justify-center">
+              <div className="flex max-w-full flex-row items-center justify-center gap-4 sm:gap-5 md:gap-6">
+                <div className="relative h-[4.5rem] w-[4.5rem] shrink-0 sm:h-[5.25rem] sm:w-[5.25rem] md:h-28 md:w-28">
+                  <Image
+                    src={brandLeft.logo.src}
+                    alt={brandLeft.logo.alt}
+                    fill
+                    sizes={heroLogoSizes}
+                    className="object-contain drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)]"
+                    priority
                   />
+                </div>
+                <div className="min-w-0 max-w-[min(100%,42rem)] text-left sm:max-w-2xl md:max-w-3xl">
+                  <p
+                    className={`${heroHeadlineScale} text-pretty tracking-[0.02em] sm:tracking-[0.03em] md:tracking-[0.035em]`}
+                  >
+                    {brandLeft.titleTop}
+                  </p>
+                  <div className="mt-2 flex min-w-0 flex-wrap items-center justify-start gap-2 sm:mt-2.5 sm:gap-2.5 md:mt-3">
+                    <span
+                      className={`${heroHeadlineScale} shrink-0 tracking-[0.1em] sm:tracking-[0.16em] md:tracking-[0.2em] lg:tracking-[0.24em]`}
+                    >
+                      {brandLeft.titleBottom}
+                    </span>
+                    <span
+                      className="h-0.5 w-14 shrink-0 bg-[var(--accent)] sm:w-16 md:h-1 md:w-24 lg:w-28"
+                      aria-hidden
+                    />
+                  </div>
                 </div>
               </div>
             </div>
