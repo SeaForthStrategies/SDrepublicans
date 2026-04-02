@@ -78,34 +78,6 @@ html {
   }
 }
 
-/* Hero elephant marks — gentle float, staggered left/right */
-@keyframes hero-elephant-float {
-  0%,
-  100% {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-5px) scale(1.03);
-  }
-}
-
-.hero-elephant-animate {
-  animation: hero-elephant-float 3.2s ease-in-out infinite;
-  will-change: transform;
-}
-
-.hero-elephant-animate-delay {
-  animation-delay: 0.55s;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-elephant-animate,
-  .hero-elephant-animate-delay {
-    animation: none !important;
-    transform: none !important;
-  }
-}
-
 body {
   margin: 0;
   padding: 0;

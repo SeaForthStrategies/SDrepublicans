@@ -17,6 +17,8 @@ export type EndorsementCardProps = {
   urlText?: string;
   urlHref?: string;
   featured?: boolean;
+  /** Photo left, copy column right (md+); stacks on small screens. */
+  layout?: "portrait" | "split";
 };
 
 /** Single presentation layer for all endorsement data — stack + grid use the same pieces. */
@@ -29,11 +31,13 @@ export function EndorsementCardInner({
   urlText,
   urlHref,
   featured,
+  layout = "portrait",
 }: EndorsementCardProps) {
   const footer = urlText || byline;
 
   return (
     <PortraitMailerCard
+      layout={layout}
       photo={
         <EndorsementCardPhoto
           image={image}

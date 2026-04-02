@@ -50,10 +50,11 @@
 }
 
 /* --- Portrait card: flex + padding from Tailwind (`mailerCardPadding`) --- */
+/* Do not set flex-direction here — globals import this file after Tailwind, so a
+   column rule would override `md:flex-row` on split layouts (e.g. Issa message). */
 .mailer-portrait-card {
   display: flex;
   min-width: 0;
-  flex-direction: column;
 }
 
 /* Top row: flex + gap + divider from Tailwind in PortraitMailerCard */
@@ -436,9 +437,8 @@
   color: var(--muted);
 }
 
-/* Subgrid desktop: photo|head, full-width rule, body, footer (matches PortraitMailerCard) */
+/* Subgrid desktop layout; display comes from Tailwind `md:grid` / `lg:grid` only (not here). */
 .mailer-endorsements-desk {
-  display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-template-rows: auto auto auto auto;
   align-items: stretch;

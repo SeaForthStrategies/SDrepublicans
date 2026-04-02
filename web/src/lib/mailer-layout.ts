@@ -79,10 +79,10 @@ export const mailerSectionTitleWrap =
   "flex w-full min-w-0 flex-col items-start gap-2";
 
 export const mailerSectionTitleText =
-  "w-full text-left font-[var(--font-heading)] text-[clamp(0.9375rem,1.35vw+0.5rem,1.125rem)] font-bold uppercase tracking-[0.18em] text-[var(--primary)] sm:tracking-[0.2em] md:tracking-[0.24em]";
+  "w-full text-left font-[var(--font-heading)] text-[clamp(1.125rem,1.85vw+0.55rem,1.625rem)] font-bold uppercase tracking-[0.14em] text-[var(--primary)] sm:tracking-[0.16em] md:tracking-[0.2em]";
 
 export const mailerSectionTitleRule =
-  "h-px w-16 shrink-0 rounded-full bg-[linear-gradient(90deg,transparent,rgba(18,58,138,0.55),rgba(242,204,60,0.85),rgba(18,58,138,0.55),transparent)] opacity-95 md:w-20";
+  "h-px w-20 shrink-0 rounded-full bg-[linear-gradient(90deg,transparent,rgba(18,58,138,0.55),rgba(242,204,60,0.85),rgba(18,58,138,0.55),transparent)] opacity-95 sm:w-24 md:w-28";
 
 /** Optional section divider */
 export const mailerSectionDivider =

@@ -29,6 +29,7 @@ export default function Home() {
                 urlText={issa.urlText}
                 urlHref={issa.urlHref}
                 featured={issa.featured}
+                layout="split"
               />
             </div>
           ) : null}

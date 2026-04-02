@@ -117,8 +117,8 @@ export const mailer: { header: MailerHeader; page: MailerPageData } = {
   header: {
     brandLeft: {
       logo: { src: "/mailer/brand/elephant.png", alt: "Republican elephant" },
-      titleTop: "REPUBLICAN",
-      titleBottom: "leadership",
+      titleTop: "SAN DIEGO REPUBLICAN",
+      titleBottom: "LEADERSHIP",
     },
     headline: "OFFICIAL ENDORSEMENT GUIDE",
     chairman: {
