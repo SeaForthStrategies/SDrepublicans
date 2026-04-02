@@ -3,6 +3,15 @@ const nextConfig = {
   reactStrictMode: true,
   /** Hide `X-Powered-By: Next.js` on Vercel / Node */
   poweredByHeader: false,
+  async redirects() {
+    return [
+      {
+        source: "/favicon.ico",
+        destination: "/icon.png",
+        permanent: false,
+      },
+    ];
+  },
   async headers() {
     return [
       {
