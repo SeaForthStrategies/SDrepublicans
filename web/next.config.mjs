@@ -7,7 +7,7 @@ const nextConfig = {
     return [
       {
         source: "/favicon.ico",
-        destination: "/icon.png",
+        destination: "/mailer/brand/logo.png?v=3",
         permanent: false,
       },
     ];

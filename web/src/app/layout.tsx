@@ -26,13 +26,20 @@ const fontHeading = Libre_Franklin({
   weight: ["600", "700", "800"],
 });
 
+/** Bust favicon caches when the brand mark file is replaced (query must change). */
+const BRAND_ICON = "/mailer/brand/logo.png?v=3";
+
 export const metadata: Metadata = {
   title: "Republican Leadership — Official Endorsement Guide",
   description: "A digital recreation of the official endorsement guide mailer.",
-  /** Matches public/icon.png, public/apple-icon.png, and app/icon.png / app/apple-icon.png (same asset). */
+  /**
+   * No `app/icon.png` — Next would emit a separate metadata route that browsers/CDNs cache aggressively.
+   * Single URL: same file as header logo + cache-bust query.
+   */
   icons: {
-    icon: [{ url: "/icon.png", type: "image/png" }],
-    apple: [{ url: "/apple-icon.png", type: "image/png" }],
+    icon: [{ url: BRAND_ICON, type: "image/png" }],
+    apple: [{ url: BRAND_ICON, type: "image/png" }],
+    shortcut: BRAND_ICON,
   },
 };
 
