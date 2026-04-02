@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   title: "Republican Leadership — Official Endorsement Guide",
   description: "A digital recreation of the official endorsement guide mailer.",
   icons: {
-    icon: [{ url: "/mailer/brand/elephant.png", type: "image/png" }],
-    apple: "/mailer/brand/elephant.png",
+    icon: [{ url: "/favicon.png", type: "image/png" }],
+    apple: "/favicon.png",
   },
 };
 

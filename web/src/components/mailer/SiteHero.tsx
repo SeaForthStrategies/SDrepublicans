@@ -10,11 +10,11 @@ const phoneBtn =
   "inline-flex min-h-[52px] items-center justify-center rounded-[var(--radius-md)] border-2 border-[var(--primary-2)] bg-white px-6 py-3.5 text-center text-[clamp(1rem,0.5vw+0.75rem,1.125rem)] font-extrabold uppercase tracking-wide text-[var(--primary-2)] shadow-[var(--shadow-xs)] transition-colors hover:bg-[var(--surface-2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-white sm:min-h-[50px] md:px-7";
 
 const heroFlankSizes =
-  "(max-width: 639px) 44px, (max-width: 767px) 52px, 60px";
+  "(max-width: 639px) 64px, (max-width: 767px) 76px, (max-width: 1023px) 88px, 96px";
 
 function HeroFlankElephant({ logoSrc }: { logoSrc: string }) {
   return (
-    <div className="relative h-11 w-11 shrink-0 sm:h-12 sm:w-12 md:h-14 md:w-14">
+    <div className="relative h-16 w-16 shrink-0 sm:h-[4.5rem] sm:w-[4.5rem] md:h-20 md:w-20 lg:h-[5.25rem] lg:w-[5.25rem]">
       <Image
         src={logoSrc}
         alt=""
@@ -38,7 +38,7 @@ type SiteHeroProps = {
 };
 
 /**
- * Masthead: flanked elephants + brand lines + large headline; chairman card; election strip + phone.
+ * Masthead: top line + elephants flanking LEADERSHIP + large headline; chairman; election strip + phone.
  */
 export function SiteHero({
   header,
@@ -68,21 +68,21 @@ export function SiteHero({
         >
           <div className="flex w-full flex-col items-center text-center">
             <div className="flex w-full justify-center">
-              <div className="inline-flex max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-3 sm:gap-x-4 md:gap-x-6 lg:gap-x-8">
-                <HeroFlankElephant logoSrc={brandLeft.logo.src} />
-                <div className="min-w-0 max-w-[min(100%,34rem)] text-center sm:max-w-xl md:max-w-2xl">
+              <div className="flex max-w-full flex-col items-center gap-2 sm:gap-2.5 md:gap-3">
+                <p
+                  className={`${heroHeadlineScale} max-w-[min(100%,34rem)] text-pretty text-center tracking-[0.02em] sm:max-w-xl sm:tracking-[0.03em] md:max-w-2xl md:tracking-[0.035em]`}
+                >
+                  {brandLeft.titleTop}
+                </p>
+                <div className="flex max-w-full items-center justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-8">
+                  <HeroFlankElephant logoSrc={brandLeft.logo.src} />
                   <p
-                    className={`${heroHeadlineScale} text-pretty tracking-[0.02em] sm:tracking-[0.03em] md:tracking-[0.035em]`}
-                  >
-                    {brandLeft.titleTop}
-                  </p>
-                  <p
-                    className={`${heroHeadlineScale} mt-2 text-center tracking-[0.1em] sm:mt-2.5 sm:tracking-[0.16em] md:mt-3 md:tracking-[0.2em] lg:tracking-[0.24em]`}
+                    className={`${heroHeadlineScale} shrink-0 text-center tracking-[0.1em] sm:tracking-[0.16em] md:tracking-[0.2em] lg:tracking-[0.24em]`}
                   >
                     {brandLeft.titleBottom}
                   </p>
+                  <HeroFlankElephant logoSrc={brandLeft.logo.src} />
                 </div>
-                <HeroFlankElephant logoSrc={brandLeft.logo.src} />
               </div>
             </div>
 
