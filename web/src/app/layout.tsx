@@ -29,9 +29,10 @@ const fontHeading = Libre_Franklin({
 export const metadata: Metadata = {
   title: "Republican Leadership — Official Endorsement Guide",
   description: "A digital recreation of the official endorsement guide mailer.",
+  /** Matches public/icon.png, public/apple-icon.png, and app/icon.png / app/apple-icon.png (same asset). */
   icons: {
     icon: [{ url: "/icon.png", type: "image/png" }],
-    apple: "/icon.png",
+    apple: [{ url: "/apple-icon.png", type: "image/png" }],
   },
 };
 
