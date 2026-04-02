@@ -7,6 +7,7 @@ import {
   mailerPortraitCardFooter,
   mailerPortraitCardHead,
   mailerPortraitCardPhoto,
+  mailerPortraitCardPhotoSplit,
   mailerPortraitCardTop,
 } from "@/lib/mailer-layout";
 
@@ -55,7 +56,8 @@ export function PortraitMailerCard({
         <div
           className={cn(
             mailerPortraitCardPhoto,
-            "mx-auto flex shrink-0 justify-center md:mx-0 md:self-start",
+            mailerPortraitCardPhotoSplit,
+            "mx-auto flex shrink-0 justify-center self-center md:mx-0 md:min-h-0 md:self-stretch",
           )}
         >
           {photo}

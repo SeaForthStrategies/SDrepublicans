@@ -42,6 +42,7 @@ export function EndorsementCardInner({
         <EndorsementCardPhoto
           image={image}
           priority={featured === true}
+          splitFullHeight={layout === "split"}
         />
       }
       head={

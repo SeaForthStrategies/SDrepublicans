@@ -8,6 +8,7 @@ import {
   mailerFooterByline,
   mailerKicker,
   mailerPhotoFrame,
+  mailerPhotoFrameSplitFull,
   mailerPhotoRing,
   mailerPhotoSizes,
   mailerPortraitKickerSlot,
@@ -18,23 +19,35 @@ import {
   mailerWebsiteButtonMuted,
   mailerWebsiteButtonWrap,
 } from "@/lib/mailer-layout";
+import { cn } from "@/lib/cn";
 import { mailerExplicitOrPillHref } from "@/lib/mailer-url";
 
 /** Fixed headshot: same dimensions, radius, and crop for every endorsement card. */
 export function EndorsementCardPhoto({
   image,
   priority,
+  splitFullHeight,
 }: {
   image: { src: string; alt: string };
   priority?: boolean;
+  /** Split layout (md+): frame fills full height of card beside copy */
+  splitFullHeight?: boolean;
 }) {
   return (
-    <div className={mailerPhotoFrame}>
+    <div
+      className={cn(
+        mailerPhotoFrame,
+        splitFullHeight === true && mailerPhotoFrameSplitFull,
+      )}
+    >
       <Image
         src={image.src}
         alt={image.alt}
         fill
-        className="object-cover object-center"
+        className={cn(
+          "object-cover",
+          splitFullHeight === true ? "object-top" : "object-center",
+        )}
         sizes={mailerPhotoSizes}
         priority={priority === true}
       />

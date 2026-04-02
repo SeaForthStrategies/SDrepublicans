@@ -32,6 +32,8 @@ export const mailerCardPadding = "p-5 sm:p-6 md:p-7";
 export const mailerPortraitCard = "mailer-portrait-card";
 export const mailerPortraitCardTop = "mailer-portrait-card__top";
 export const mailerPortraitCardPhoto = "mailer-portrait-card__photo";
+/** Split-layout photo column: full-height frame on md+ */
+export const mailerPortraitCardPhotoSplit = "mailer-portrait-card__photo--split";
 export const mailerPortraitCardHead = "mailer-portrait-card__head";
 export const mailerPortraitCardBody = "mailer-portrait-card__body";
 export const mailerPortraitCardFooter = "mailer-portrait-card__footer";
@@ -55,6 +57,8 @@ export const mailerCardPara = "mailer-card-para";
 export const mailerCardParaCaps = "mailer-card-para mailer-card-para--caps";
 export const mailerCardFooterBand = "mailer-card-footer-band";
 export const mailerPhotoFrame = "mailer-photo-frame";
+/** With split layout: frame fills stretched photo column */
+export const mailerPhotoFrameSplitFull = "mailer-photo-frame--split-full";
 export const mailerPhotoFrameCutout = "mailer-photo-frame-cutout";
 export const mailerPhotoRing = "mailer-photo-ring";
 export const mailerWebsiteButton = "mailer-card-url-button";

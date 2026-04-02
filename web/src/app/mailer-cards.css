@@ -68,6 +68,31 @@
   align-self: start;
 }
 
+/* Split card (e.g. Issa): same width as other headshots, full card height on md+ */
+@media (min-width: 768px) {
+  .mailer-portrait-card__photo.mailer-portrait-card__photo--split {
+    display: flex;
+    width: var(--mailer-photo-w);
+    min-width: var(--mailer-photo-w);
+    max-width: var(--mailer-photo-w);
+    flex-direction: column;
+    align-self: stretch;
+    height: auto;
+    min-height: 0;
+  }
+
+  .mailer-photo-frame.mailer-photo-frame--split-full {
+    flex: 1 1 auto;
+    width: var(--mailer-photo-w) !important;
+    min-width: var(--mailer-photo-w) !important;
+    max-width: var(--mailer-photo-w) !important;
+    height: auto;
+    min-height: 0;
+    align-self: stretch;
+    aspect-ratio: unset;
+  }
+}
+
 .mailer-portrait-card__head {
   min-width: 0;
   align-self: start;
