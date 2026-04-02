@@ -39,7 +39,7 @@ export function SiteHero({
       className="relative flex w-full flex-col items-center overflow-x-clip"
       aria-label="San Diego Republican Leadership"
     >
-      <div className="relative w-full text-white">
+      <div className="relative w-full overflow-x-clip text-white">
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_100%_at_50%_42%,#1c4a9c_0%,#0f3274_38%,#071a42_72%,#040d24_100%)]"
           aria-hidden
@@ -48,6 +48,12 @@ export function SiteHero({
           className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"
           aria-hidden
         />
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[clamp(3.25rem,10vw,6rem)] overflow-hidden"
+          aria-hidden
+        >
+          <div className="absolute left-[44%] top-0 h-[min(120vw,52rem)] w-[min(220vw,90rem)] -translate-x-1/2 -translate-y-[79%] rounded-[100%] bg-[#f2dc3c] sm:left-[46%] sm:-translate-y-[80%] md:left-1/2 md:-translate-y-[81%]" />
+        </div>
 
         <div
           className={`${mailerContainer} relative z-10 flex w-full flex-col items-center pb-12 pt-[max(1.25rem,env(safe-area-inset-top))] md:pb-16 md:pt-[max(1.75rem,env(safe-area-inset-top))]`}
@@ -95,23 +101,6 @@ export function SiteHero({
         </div>
       </div>
 
-      <div
-        className="relative z-[2] w-full bg-[#fce205] text-[var(--primary-2)] shadow-[0_4px_0_rgba(0,0,0,0.06)] [clip-path:polygon(0_10%,4%_0,100%_0,100%_100%,0_100%)] sm:[clip-path:polygon(0_14%,5%_0,100%_0,100%_100%,0_100%)]"
-        aria-label="Election dates"
-      >
-        <div
-          className={`${mailerContainer} flex flex-col gap-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:py-5 md:py-6`}
-        >
-          <p className="max-w-full text-center font-[var(--font-heading)] text-[clamp(1rem,2.4vw+0.55rem,1.75rem)] font-extrabold uppercase leading-tight tracking-[0.04em] text-[#0b2a66] sm:max-w-[min(100%,28rem)] sm:text-left md:tracking-[0.06em]">
-            {left}
-          </p>
-          <div className="flex flex-col gap-1 text-center font-[var(--font-heading)] text-[clamp(0.8125rem,1.5vw+0.5rem,1rem)] font-extrabold uppercase leading-snug tracking-[0.05em] text-[var(--accent)] sm:text-right md:text-[clamp(0.875rem,1.2vw+0.55rem,1.0625rem)]">
-            <p>{rightTop}</p>
-            <p>{rightBottom}</p>
-          </div>
-        </div>
-      </div>
-
       {chairman ? (
         <div className="relative z-[1] -mt-5 w-full md:-mt-7">
           <div className={`${mailerContainer} flex w-full justify-center`}>
@@ -151,8 +140,19 @@ export function SiteHero({
             className={`${mailerContainer} flex w-full flex-col items-center py-6 md:py-7`}
           >
             <div className="mx-auto flex w-full max-w-lg flex-col items-center gap-5 text-center sm:max-w-xl md:max-w-2xl">
+              <div className="w-full space-y-3">
+                <p
+                  className="w-full rounded-xl border border-[var(--primary)]/20 bg-white/90 px-4 py-3 font-[var(--font-heading)] text-[clamp(1.125rem,3vw+0.5rem,1.5rem)] font-bold uppercase leading-snug tracking-[0.06em] text-[var(--primary-2)] shadow-[0_0_24px_rgba(18,58,138,0.35),0_4px_24px_rgba(11,42,102,0.08)] sm:px-5 sm:py-3.5"
+                >
+                  {left}
+                </p>
+                <div className="space-y-1.5 text-[0.9375rem] font-bold uppercase leading-snug tracking-wide text-[var(--fg)]/90 sm:text-[1rem]">
+                  <p>{rightTop}</p>
+                  <p>{rightBottom}</p>
+                </div>
+              </div>
               <div
-                className="w-full max-w-sm pt-1"
+                className="w-full max-w-sm border-t border-[var(--fg)]/15 pt-4"
                 role="group"
                 aria-label="Ballot pickup phone"
               >
