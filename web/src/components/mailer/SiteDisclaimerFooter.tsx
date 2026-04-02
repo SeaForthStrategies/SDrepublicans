@@ -6,9 +6,12 @@ export function SiteDisclaimerFooter({ text }: { text: string }) {
   const body = rest.join("\n\n");
 
   return (
-    <footer className="border-t border-[var(--border)] bg-[var(--surface-2)]">
+    <footer
+      id="voter-notice"
+      className="scroll-mt-24 border-t border-[var(--border)] bg-[var(--surface-2)]"
+    >
       <div className={`${mailerContainer} py-8 md:py-9`}>
-        <div className="mx-auto w-full max-w-[52rem] rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] px-4 py-6 text-center shadow-[var(--shadow-xs)] sm:px-6 md:px-8 md:py-7">
+        <div className="mx-auto w-full max-w-[52rem] rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] px-4 py-6 text-center shadow-[var(--shadow-xs)] transition-[border-color,box-shadow] duration-200 ease-out hover:border-[var(--primary)]/12 hover:shadow-[var(--shadow-sm)] sm:px-6 md:px-8 md:py-7">
           <h3 className="font-[var(--font-heading)] text-[clamp(0.875rem,0.5vw+0.6rem,1rem)] font-bold uppercase tracking-[0.12em] text-[var(--primary)] sm:tracking-[0.14em]">
             {title}
           </h3>

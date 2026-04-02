@@ -2,27 +2,28 @@
 @import "./mailer-cards.css";
 
 :root {
-  /* neutrals */
-  --bg: #f7f8fb;
-  --fg: #0b1220;
-  --muted: #5a6882;
-  --muted-2: #7b879c;
+  /* neutrals — cool paper white, ink with a navy cast */
+  --bg: #f4f6fa;
+  --fg: #0c1628;
+  --muted: #4a5c76;
+  --muted-2: #6a7d94;
   --surface: #ffffff;
-  --surface-2: #f2f5fb;
-  --surface-3: #eef2f9;
-  --border: rgba(15, 23, 42, 0.12);
-  --border-2: rgba(15, 23, 42, 0.08);
+  --surface-2: #eef2f9;
+  --surface-3: #e6ecf6;
+  --border: rgba(8, 31, 69, 0.11);
+  --border-2: rgba(8, 31, 69, 0.06);
 
-  /* brand */
-  --primary: #123a8a; /* deep navy */
-  --primary-2: #0b2a66;
-  --accent: #cf1f2d; /* red */
-  --gold: #f2cc3c;
+  /* brand — San Diego GOP: flag navy, campaign red, metallic gold */
+  --primary: #143d7a;
+  --primary-2: #081f45;
+  --accent: #b91c2c;
+  --accent-deep: #6e1019;
+  --gold: #c6a035;
 
-  /* elevation */
-  --shadow-xs: 0 1px 0 rgba(2, 6, 23, 0.04);
-  --shadow-sm: 0 6px 18px rgba(2, 6, 23, 0.06);
-  --shadow-md: 0 18px 55px rgba(2, 6, 23, 0.12);
+  /* elevation — shadows tinted with primary navy */
+  --shadow-xs: 0 1px 0 rgba(8, 31, 69, 0.05);
+  --shadow-sm: 0 6px 20px rgba(8, 31, 69, 0.08);
+  --shadow-md: 0 20px 58px rgba(8, 31, 69, 0.13);
 
   /* radius */
   --radius-sm: 12px;
@@ -33,7 +34,7 @@
   --mailer-photo-text-gap: 1.125rem;
 
   /* focus */
-  --ring: 0 0 0 4px rgba(18, 58, 138, 0.18);
+  --ring: 0 0 0 4px rgba(20, 61, 122, 0.22);
 }
 
 /* Tailwind theme tokens. Do not set --font-heading here — Next font sets it on
@@ -78,14 +79,104 @@ html {
   }
 }
 
+/* —— Site hero motion (staggered load + subtle ambient; disabled below) —— */
+@keyframes site-hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1.125rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes site-hero-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes site-hero-glow-breathe {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.72;
+  }
+}
+
+.site-hero-enter {
+  opacity: 0;
+  animation: site-hero-fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.site-hero-enter-delay-1 {
+  animation-delay: 0.12s;
+}
+
+.site-hero-ctas-enter {
+  opacity: 0;
+  animation: site-hero-fade-up 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.38s forwards;
+}
+
+.site-hero-divider-enter {
+  opacity: 0;
+  animation: site-hero-fade-in 0.65s ease-out 0.48s forwards;
+}
+
+.site-hero-below-enter {
+  opacity: 0;
+  animation: site-hero-fade-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+}
+
+.site-hero-below-enter-2 {
+  opacity: 0;
+  animation: site-hero-fade-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.68s forwards;
+}
+
+.site-hero-ambient-glow {
+  animation: site-hero-glow-breathe 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-hero-enter,
+  .site-hero-ctas-enter,
+  .site-hero-divider-enter,
+  .site-hero-below-enter,
+  .site-hero-below-enter-2 {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .site-hero-ambient-glow {
+    animation: none;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
   overflow-x: clip;
   background:
     radial-gradient(
+      880px 420px at 92% -8%,
+      rgba(185, 28, 44, 0.04),
+      transparent 58%
+    ),
+    radial-gradient(
+      720px 380px at 8% -12%,
+      rgba(20, 61, 122, 0.07),
+      transparent 62%
+    ),
+    radial-gradient(
       720px 380px at 50% -15%,
-      rgba(18, 58, 138, 0.08),
+      rgba(20, 61, 122, 0.06),
       transparent 70%
     ),
     var(--bg);
@@ -99,7 +190,8 @@ body {
 }
 
 ::selection {
-  background: rgba(242, 204, 60, 0.45);
+  background: rgba(198, 160, 53, 0.42);
+  color: var(--fg);
 }
 
 :focus-visible {
@@ -108,10 +200,48 @@ body {
   border-radius: 10px;
 }
 
+/* Skip link: off-screen until focused */
+.skip-to-content {
+  position: fixed;
+  left: 1rem;
+  top: 0;
+  z-index: 9999;
+  transform: translateY(-120%);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--primary-2);
+  padding: 0.625rem 1rem;
+  font-family: var(--font-heading), system-ui, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s ease;
+}
+
+.skip-to-content:focus-visible {
+  outline: none;
+  transform: translateY(0.75rem);
+  box-shadow: var(--ring), var(--shadow-md);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-to-content {
+    transition: none;
+  }
+
+  .skip-to-content:focus-visible {
+    transform: translateY(0.5rem);
+  }
+}
+
 /* subtle scrollbars without “app” vibes */
 @media (pointer: fine) {
   * {
     scrollbar-width: thin;
-    scrollbar-color: rgba(90, 104, 130, 0.35) transparent;
+    scrollbar-color: rgba(20, 61, 122, 0.32) transparent;
   }
 }

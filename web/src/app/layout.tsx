@@ -1,6 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Libre_Franklin, Source_Sans_3 } from "next/font/google";
+import { Libre_Baskerville, Libre_Franklin, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
+
+/** Hero / editorial titles — classic serif (reference-style campaign masthead) */
+const fontHeroSerif = Libre_Baskerville({
+  variable: "--font-hero-serif",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+});
 
 /** Body copy — readable, neutral; pairs with heading font */
 const fontBody = Source_Sans_3({
@@ -38,7 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fontBody.variable} ${fontHeading.variable} h-full antialiased`}
+      className={`${fontBody.variable} ${fontHeading.variable} ${fontHeroSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full min-w-0 touch-manipulation flex flex-col overflow-x-clip">
         {children}

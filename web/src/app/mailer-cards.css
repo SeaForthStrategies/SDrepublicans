@@ -37,7 +37,16 @@
   border: 1px solid var(--border);
   background: var(--surface);
   box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.2s;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mailer-card-shell:hover {
+    border-color: rgba(20, 61, 122, 0.16);
+    box-shadow: var(--shadow-md);
+  }
 }
 
 /* Direct children of desktop 3-up grid: span shared row tracks so subgrid aligns */
@@ -266,7 +275,7 @@
   font-size: clamp(0.9375rem, 0.4vw + 0.75rem, 1.0625rem);
   font-weight: 500;
   line-height: 1.62;
-  color: rgba(11, 18, 32, 0.92);
+  color: rgba(12, 22, 40, 0.92);
 }
 
 .mailer-card-para {
@@ -278,7 +287,7 @@
 
 .mailer-card-para--caps {
   margin: 0;
-  border-left: 3px solid rgba(18, 58, 138, 0.8);
+  border-left: 3px solid rgba(20, 61, 122, 0.82);
   padding-left: 0.75rem;
   font-size: 0.875rem;
   font-weight: 800;
@@ -369,7 +378,7 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-md);
-  border: 1px solid rgba(11, 42, 102, 0.25);
+  border: 1px solid rgba(8, 31, 69, 0.28);
   background: var(--primary);
   padding: 0.75rem;
   text-align: center;
@@ -442,7 +451,7 @@
   padding: 0.75rem 1rem;
   font-size: clamp(0.75rem, 0.3vw + 0.55rem, 0.875rem);
   line-height: 1.375;
-  color: rgba(11, 18, 32, 0.9);
+  color: rgba(12, 22, 40, 0.9);
 }
 
 @media (min-width: 640px) {

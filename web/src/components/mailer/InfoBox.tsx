@@ -4,7 +4,7 @@ import type { InfoBoxData } from "@/content/mailer";
 export function InfoBox({ data }: { data: InfoBoxData }) {
   return (
     <div
-      className={`h-auto w-full overflow-visible rounded-[var(--radius-lg)] border border-[rgba(18,58,138,0.35)] bg-[linear-gradient(165deg,#0b1a3f_0%,#071027_55%,#050a14_100%)] shadow-[var(--shadow-md)] ${mailerCardPadding}`}
+      className={`h-auto w-full overflow-visible rounded-[var(--radius-lg)] border border-[var(--primary)]/38 bg-[linear-gradient(165deg,#0a2048_0%,#061228_55%,#03060e_100%)] shadow-[var(--shadow-md)] ${mailerCardPadding}`}
     >
       <div className="flex min-w-0 gap-4 sm:gap-5 md:gap-6">
         <div
@@ -36,7 +36,7 @@ export function InfoBox({ data }: { data: InfoBoxData }) {
             ))}
           </div>
 
-          <div className="mt-6 flex min-h-[48px] w-full items-center justify-center rounded-[var(--radius-md)] border border-white/12 bg-[linear-gradient(90deg,var(--accent),#9e1422)] px-4 py-3 text-center text-[clamp(0.9375rem,0.4vw+0.72rem,1.0625rem)] font-extrabold uppercase tracking-[0.05em] text-white shadow-inner sm:mt-7 sm:min-h-[44px] md:py-2.5">
+          <div className="mt-6 flex min-h-[48px] w-full items-center justify-center rounded-[var(--radius-md)] border border-white/14 bg-[linear-gradient(90deg,var(--accent),var(--accent-deep))] px-4 py-3 text-center text-[clamp(0.9375rem,0.4vw+0.72rem,1.0625rem)] font-extrabold uppercase tracking-[0.05em] text-white shadow-inner sm:mt-7 sm:min-h-[44px] md:py-2.5">
             {data.cta}
           </div>
         </div>

@@ -76,7 +76,7 @@ export const mailerCardSubheading = "mailer-card-subheading";
 
 /** Page meta strip (website + quote line) inside MailerPage — aligns with page gutter */
 export const mailerMetaStrip =
-  "mb-7 flex flex-col gap-4 rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] px-4 py-4 text-left text-[clamp(0.9375rem,0.45vw+0.75rem,1.0625rem)] leading-relaxed shadow-[var(--shadow-sm)] sm:px-5 sm:py-5 md:px-6 md:text-[clamp(1rem,0.4vw+0.7rem,1.125rem)]";
+  "mb-7 flex flex-col gap-4 rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] px-4 py-4 text-left text-[clamp(0.9375rem,0.45vw+0.75rem,1.0625rem)] leading-relaxed shadow-[var(--shadow-sm)] transition-[border-color,box-shadow] duration-200 ease-out hover:border-[var(--primary)]/14 hover:shadow-[var(--shadow-md)] sm:px-5 sm:py-5 md:px-6 md:text-[clamp(1rem,0.4vw+0.7rem,1.125rem)]";
 
 /** Section titles (Endorsements / Candidates) — label + accent, flush with content column */
 export const mailerSectionTitleWrap =
@@ -86,11 +86,11 @@ export const mailerSectionTitleText =
   "w-full text-left font-[var(--font-heading)] text-[clamp(1.125rem,1.85vw+0.55rem,1.625rem)] font-bold uppercase tracking-[0.14em] text-[var(--primary)] sm:tracking-[0.16em] md:tracking-[0.2em]";
 
 export const mailerSectionTitleRule =
-  "h-px w-20 shrink-0 rounded-full bg-[linear-gradient(90deg,transparent,rgba(18,58,138,0.55),rgba(242,204,60,0.85),rgba(18,58,138,0.55),transparent)] opacity-95 sm:w-24 md:w-28";
+  "h-px w-20 shrink-0 rounded-full bg-[linear-gradient(90deg,transparent,rgba(20,61,122,0.55),rgba(198,160,53,0.88),rgba(20,61,122,0.55),transparent)] opacity-95 sm:w-24 md:w-28";
 
 /** Optional section divider */
 export const mailerSectionDivider =
-  "mt-8 h-px w-full bg-[linear-gradient(90deg,transparent,rgba(18,58,138,0.22),rgba(242,204,60,0.14),transparent)]";
+  "mt-8 h-px w-full bg-[linear-gradient(90deg,transparent,rgba(20,61,122,0.22),rgba(198,160,53,0.16),transparent)]";
 
 /** Website / URL chip (min ~44px tap height on small screens) */
 export const mailerWebsitePill =

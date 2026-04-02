@@ -116,7 +116,7 @@ export type MailerHeader = {
 export const mailer: { header: MailerHeader; page: MailerPageData } = {
   header: {
     brandLeft: {
-      logo: { src: "/mailer/brand/elephant.png", alt: "Republican elephant" },
+      logo: { src: "/icon.png", alt: "San Diego Republican Leadership" },
       titleTop: "SAN DIEGO REPUBLICAN",
       titleBottom: "LEADERSHIP",
     },

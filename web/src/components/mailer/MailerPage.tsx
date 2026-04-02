@@ -159,7 +159,7 @@ export function MailerPage({ page }: { page: MailerPageData }) {
               return (
                 <Fragment key={section.id}>
                   <section
-                    className="scroll-mt-8 space-y-5 md:space-y-6"
+                    className="scroll-mt-24 space-y-5 md:space-y-6"
                     aria-labelledby={
                       sectionHeading ? `section-${section.id}` : undefined
                     }

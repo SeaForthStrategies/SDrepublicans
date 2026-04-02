@@ -1,6 +1,8 @@
 import { EndorsementCard } from "@/components/mailer/EndorsementCard";
 import { MailerPage } from "@/components/mailer/MailerPage";
+import { SkipToContent } from "@/components/mailer/SkipToContent";
 import { SiteHero } from "@/components/mailer/SiteHero";
+import { SiteNav } from "@/components/mailer/SiteNav";
 import { QUICK_CONTACT, mailer } from "@/content/mailer";
 import { mailerContainer } from "@/lib/mailer-layout";
 
@@ -10,7 +12,17 @@ export default function Home() {
 
   return (
     <div className="min-h-full min-w-0 overflow-x-clip bg-[var(--bg)] pt-0">
-      <main className="relative min-w-0 pt-0">
+      <SkipToContent />
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="relative min-w-0 pt-0 outline-none focus:outline-none"
+      >
+        <SiteNav
+          logo={mailer.header.brandLeft.logo}
+          showMessageLink={Boolean(issa)}
+          showChairmanLink={Boolean(mailer.header.chairman)}
+        />
         <div className="pb-10 md:pb-14">
           <SiteHero
             header={mailer.header}
@@ -19,7 +31,10 @@ export default function Home() {
           />
 
           {issa ? (
-            <div className={`${mailerContainer} mt-6 md:mt-8`}>
+            <div
+              id="message"
+              className={`${mailerContainer} mt-6 scroll-mt-24 md:mt-8`}
+            >
               <EndorsementCard
                 image={issa.image}
                 quote={issa.quote}
