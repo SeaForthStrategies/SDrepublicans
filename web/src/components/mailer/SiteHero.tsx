@@ -17,7 +17,7 @@ const phoneBtn =
   "inline-flex min-h-[52px] items-center justify-center rounded-[var(--radius-md)] border-2 border-[var(--primary-2)] bg-white px-6 py-3.5 text-center text-[clamp(1rem,0.5vw+0.75rem,1.125rem)] font-extrabold uppercase tracking-wide text-[var(--primary-2)] shadow-[var(--shadow-xs)] transition-[color,background-color,transform,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:bg-[var(--surface-2)] hover:shadow-[var(--shadow-sm)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-white motion-reduce:transition-colors motion-reduce:hover:translate-y-0 sm:min-h-[50px] md:px-7";
 
 const heroLogoSizes =
-  "(max-width: 639px) 80px, (max-width: 1023px) 88px, 96px";
+  "(max-width: 639px) 72px, (max-width: 1023px) 80px, 88px";
 
 type SiteHeroProps = {
   header: MailerHeader;
@@ -42,7 +42,10 @@ export function SiteHero({
       className="relative flex w-full flex-col items-center overflow-x-clip scroll-mt-0"
       aria-label="San Diego Republican Leadership"
     >
-      <div className="relative w-full min-w-0 overflow-x-clip text-white">
+      <div
+        id="hero-backdrop"
+        className="relative -mt-[6.5rem] w-full min-w-0 overflow-x-clip text-white sm:-mt-[4.85rem]"
+      >
         <div
           className="pointer-events-none absolute inset-0 bg-[linear-gradient(162deg,#c42d3e_0%,#a61f30_18%,#7a223c_34%,#4a3058_50%,#254878_68%,#143d7a_82%,#0c2852_92%,#051428_100%)]"
           aria-hidden
@@ -70,31 +73,29 @@ export function SiteHero({
         />
 
         <div
-          className={`${mailerContainer} relative z-10 flex justify-center pt-[max(1.5rem,env(safe-area-inset-top))] pb-[max(5.5rem,14%)] md:pb-[max(6.5rem,12%)] md:pt-[max(2rem,env(safe-area-inset-top))]`}
+          className={`${mailerContainer} relative z-10 flex justify-center pt-[max(calc(6.5rem+1.5rem),calc(env(safe-area-inset-top)+6.25rem))] pb-[max(5.5rem,14%)] sm:pt-[max(calc(4.85rem+1.5rem),calc(env(safe-area-inset-top)+4.5rem))] md:pb-[max(6.5rem,12%)] md:pt-[max(calc(4.85rem+2rem),calc(env(safe-area-inset-top)+4.5rem))]`}
         >
-          <div className="flex w-full min-w-0 max-w-[40rem] flex-col items-center gap-8 text-center md:max-w-[44rem] md:gap-10">
-            <h1 className="site-hero-enter w-full min-w-0 px-2 font-[var(--font-hero-serif)] text-[clamp(1.625rem,5vw+0.5rem,2.75rem)] font-bold uppercase leading-[1.08] tracking-[0.04em] text-balance text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.45)] sm:tracking-[0.045em] md:tracking-[0.05em]">
+          <div className="flex w-full min-w-0 max-w-[min(100%,42rem)] flex-col items-center gap-8 text-center md:max-w-[min(100%,46rem)] md:gap-10">
+            <h1 className="site-hero-enter w-full min-w-0 max-w-[min(100%,34rem)] font-[var(--font-hero-serif)] text-[clamp(1.625rem,5vw+0.5rem,2.75rem)] font-bold uppercase leading-[1.08] tracking-[0.04em] text-balance text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.45)] sm:tracking-[0.045em] md:tracking-[0.05em]">
               {headline}
             </h1>
 
-            <div className="site-hero-enter site-hero-enter-delay-1 flex w-full min-w-0 flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-5 md:gap-6">
-              <div className="relative shrink-0 rounded-2xl bg-white/14 p-2.5 ring-[3px] ring-white/45 ring-offset-[3px] ring-offset-transparent shadow-[0_4px_24px_rgba(0,0,0,0.35)] backdrop-blur-[2px] sm:p-3 md:p-3.5">
-                <div className="relative h-[4rem] w-[4rem] sm:h-[4.5rem] sm:w-[4.5rem] md:h-20 md:w-20">
-                  <Image
-                    src={brandLeft.logo.src}
-                    alt={brandLeft.logo.alt}
-                    fill
-                    sizes={heroLogoSizes}
-                    className="object-contain drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)] [filter:brightness(1.08)_contrast(1.05)]"
-                    priority
-                  />
-                </div>
+            <div className="site-hero-enter site-hero-enter-delay-1 flex w-full min-w-0 flex-col items-center gap-5">
+              <div className="relative mx-auto h-[3.75rem] w-[3.75rem] shrink-0 sm:h-16 sm:w-16 md:h-[4.25rem] md:w-[4.25rem]">
+                <Image
+                  src={brandLeft.logo.src}
+                  alt={brandLeft.logo.alt}
+                  fill
+                  sizes={heroLogoSizes}
+                  className="object-contain drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]"
+                  priority
+                />
               </div>
-              <div className="flex min-w-0 flex-col items-center gap-1.5 text-center sm:items-start sm:text-left">
-                <p className="w-full max-w-[22rem] text-pretty font-[var(--font-hero-serif)] text-[clamp(0.8125rem,2vw+0.5rem,1rem)] font-bold uppercase leading-snug tracking-[0.18em] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.35)] sm:max-w-none sm:tracking-[0.2em] md:text-[1.0625rem] md:tracking-[0.22em]">
+              <div className="flex w-full min-w-0 flex-col items-center gap-1.5 text-pretty text-center">
+                <p className="w-full max-w-[28rem] font-[var(--font-hero-serif)] text-[clamp(0.8125rem,2vw+0.5rem,1rem)] font-bold uppercase leading-snug tracking-[0.18em] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.35)] sm:tracking-[0.2em] md:text-[1.0625rem] md:tracking-[0.22em]">
                   {brandLeft.titleTop}
                 </p>
-                <p className="w-full max-w-[22rem] text-pretty font-[var(--font-hero-serif)] text-[clamp(1.25rem,4vw+0.5rem,2rem)] font-normal italic leading-tight tracking-[0.06em] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.35)] sm:max-w-none md:text-[2.125rem] md:tracking-[0.05em]">
+                <p className="w-full max-w-[28rem] font-[var(--font-hero-serif)] text-[clamp(1.25rem,4vw+0.5rem,2rem)] font-normal italic leading-tight tracking-[0.06em] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.35)] md:text-[2.125rem] md:tracking-[0.05em]">
                   {brandLeft.titleBottom}
                 </p>
               </div>
