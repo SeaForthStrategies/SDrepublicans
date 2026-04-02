@@ -2,8 +2,13 @@
   "name": "sdrepublicans",
   "private": true,
   "packageManager": "pnpm@10.32.1",
-  "description": "Monorepo root. The Next.js app is in ./web — set Vercel Root Directory to web for deployment.",
+  "description": "Monorepo root. The Next.js app is in ./web. Prefer Vercel Root Directory = web; root next/react mirror web for detection when the repo root is the Vercel project root.",
   "scripts": {
     "build": "pnpm -C web build"
+  },
+  "dependencies": {
+    "next": "14.2.35",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   }
 }

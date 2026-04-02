@@ -2,7 +2,7 @@
 
 Next.js site (mailer / endorsement guide) in the `web` directory.
 
-The repository root includes a minimal `package.json` (for tooling and `pnpm -C web build`). **Vercel must still use Root Directory `web`** so Next.js is detected from `web/package.json` and `web/next.config.mjs`.
+The repository root includes `package.json` (with `next`/`react`/`react-dom` aligned to `web/` so Vercel can detect Next.js if the project root is the repo root) and **`vercel.json`** that installs and builds from **`web/`**. **Recommended:** set Vercel **Root Directory** to **`web`** so only `web/package.json`, `web/vercel.json`, and `web/pnpm-lock.yaml` apply—simpler and matches Vercel’s monorepo docs.
 
 ## Deploy on Vercel
 
