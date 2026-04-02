@@ -53,8 +53,8 @@ export function SiteHero({
           className={`${mailerContainer} relative z-10 flex w-full flex-col items-center pb-12 pt-[max(1.25rem,env(safe-area-inset-top))] md:pb-16 md:pt-[max(1.75rem,env(safe-area-inset-top))]`}
         >
           <div className="flex w-full flex-col items-center text-center">
-            <div className="flex w-full max-w-full flex-col items-center justify-center gap-4 min-[400px]:flex-row min-[400px]:flex-wrap min-[400px]:gap-4 sm:gap-5 md:gap-6">
-              <div className="relative h-[4.5rem] w-[4.5rem] shrink-0 sm:h-[5.25rem] sm:w-[5.25rem] md:h-28 md:w-28">
+            <div className="flex w-full max-w-full flex-col items-center justify-center gap-4 sm:gap-5 md:gap-6">
+              <div className="relative mx-auto h-[4.5rem] w-[4.5rem] shrink-0 sm:h-[5.25rem] sm:w-[5.25rem] md:h-28 md:w-28">
                 <Image
                   src={brandLeft.logo.src}
                   alt={brandLeft.logo.alt}
@@ -64,7 +64,7 @@ export function SiteHero({
                   priority
                 />
               </div>
-              <div className="w-full min-w-0 max-w-full text-center min-[400px]:w-auto min-[400px]:max-w-xl sm:max-w-2xl md:max-w-3xl">
+              <div className="mx-auto w-full min-w-0 max-w-full text-center sm:max-w-2xl md:max-w-3xl">
                 <p
                   className={`${heroHeadlineScale} text-pretty tracking-[0.02em] sm:tracking-[0.03em] md:tracking-[0.035em]`}
                 >
@@ -85,7 +85,7 @@ export function SiteHero({
             </div>
 
             <h1
-              className={`${heroHeadlineScale} mx-auto mt-5 w-full max-w-4xl text-balance tracking-[0.02em] sm:mt-6 sm:tracking-[0.03em] md:mt-7 md:tracking-[0.035em] lg:tracking-[0.04em]`}
+              className={`${heroHeadlineScale} mx-auto mt-5 w-full max-w-4xl text-balance text-center tracking-[0.02em] sm:mt-6 sm:tracking-[0.03em] md:mt-7 md:tracking-[0.035em] lg:tracking-[0.04em]`}
             >
               {headline}
             </h1>
