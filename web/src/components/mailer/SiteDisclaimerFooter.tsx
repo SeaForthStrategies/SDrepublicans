@@ -8,12 +8,12 @@ export function SiteDisclaimerFooter({ text }: { text: string }) {
   return (
     <footer className="border-t border-[var(--border)] bg-[var(--surface-2)]">
       <div className={`${mailerContainer} py-8 md:py-9`}>
-        <div className="mx-auto max-w-[52rem] rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] px-4 py-6 shadow-[var(--shadow-xs)] sm:px-6 md:px-8 md:py-7">
-          <h3 className="text-center font-[var(--font-heading)] text-[12px] font-bold uppercase tracking-[0.16em] text-[var(--primary)] md:text-[12px]">
+        <div className="mx-auto w-full max-w-[52rem] rounded-[var(--radius-lg)] border border-[var(--border)] bg-[var(--surface)] px-4 py-6 text-center shadow-[var(--shadow-xs)] sm:px-6 md:px-8 md:py-7">
+          <h3 className="font-[var(--font-heading)] text-[clamp(0.875rem,0.5vw+0.6rem,1rem)] font-bold uppercase tracking-[0.12em] text-[var(--primary)] sm:tracking-[0.14em]">
             {title}
           </h3>
-          <div className="mx-auto mt-4 max-w-none border-t border-[var(--border)] pt-4 text-center sm:text-left">
-            <p className="text-pretty whitespace-pre-line text-[11px] font-medium leading-relaxed text-[var(--muted)] md:text-[12px] md:leading-relaxed">
+          <div className="mt-4 border-t border-[var(--border)] pt-4">
+            <p className="mx-auto max-w-prose text-pretty whitespace-pre-line text-[clamp(0.8125rem,0.4vw+0.55rem,0.9375rem)] font-medium leading-relaxed text-[var(--muted)] md:leading-[1.65]">
               {body}
             </p>
           </div>

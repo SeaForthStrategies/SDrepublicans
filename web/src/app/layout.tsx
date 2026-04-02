@@ -1,17 +1,29 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Oswald } from "next/font/google";
+import { Libre_Franklin, Playfair_Display, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 
-const fontBody = Inter({
+/** Body copy — readable, neutral; pairs with heading font */
+const fontBody = Source_Sans_3({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
 });
 
-const fontHeading = Oswald({
+/** Headlines, labels, hero — editorial / print-adjacent */
+const fontHeading = Libre_Franklin({
   variable: "--font-heading",
   subsets: ["latin"],
   display: "swap",
+  weight: ["600", "700", "800"],
+});
+
+/** Hero “leadership” word — distinct from REPUBLICAN (Libre Franklin) */
+const fontLeadership = Playfair_Display({
+  variable: "--font-leadership",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["600", "700"],
+  style: ["italic"],
 });
 
 export const metadata: Metadata = {
@@ -35,7 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fontBody.variable} ${fontHeading.variable} h-full antialiased`}
+      className={`${fontBody.variable} ${fontHeading.variable} ${fontLeadership.variable} h-full antialiased`}
     >
       <body className="min-h-full min-w-0 touch-manipulation flex flex-col overflow-x-clip">
         {children}

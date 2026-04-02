@@ -15,6 +15,7 @@ import { MessagePanel } from "./MessagePanel";
 import { InfoBox } from "./InfoBox";
 import { SiteDisclaimerFooter } from "./SiteDisclaimerFooter";
 import { EndorsementCard } from "./EndorsementCard";
+import { EndorsementsRow } from "./EndorsementsRow";
 
 function SectionHeading({ id, title }: { id: string; title: string }) {
   return (
@@ -43,14 +44,20 @@ function renderGridItem(
 
   if (item.type === "candidate") {
     return (
-      <div key={item.data.id} className="min-w-0">
+      <div
+        key={item.data.id}
+        className="flex h-full min-h-0 w-full min-w-0 flex-col"
+      >
         <CandidateCard data={item.data} />
       </div>
     );
   }
   if (item.type === "message") {
     return (
-      <div key={item.data.id} className="min-w-0">
+      <div
+        key={item.data.id}
+        className="flex h-full min-h-0 w-full min-w-0 flex-col"
+      >
         <MessagePanel data={item.data} />
       </div>
     );
@@ -61,7 +68,7 @@ function renderGridItem(
     return (
       <div
         key={item.data.id}
-        className={`min-w-0 ${spanFeatured} ${taxFullWidth}`}
+        className={`flex h-full min-h-0 w-full min-w-0 flex-col ${spanFeatured} ${taxFullWidth}`}
       >
         <InfoBox data={item.data} />
       </div>
@@ -69,7 +76,10 @@ function renderGridItem(
   }
   if (item.type === "endorsement") {
     return (
-      <div key={item.data.id} className={`min-w-0 ${spanFeatured}`}>
+      <div
+        key={item.data.id}
+        className={`flex h-full min-h-0 w-full min-w-0 flex-col ${spanFeatured}`}
+      >
         <EndorsementCard
           image={item.data.image}
           quote={item.data.quote}
@@ -111,14 +121,12 @@ export function MailerPage({ page }: { page: MailerPageData }) {
           {page.top.showWebsiteLine || page.top.showQuoteLine ? (
             <div className={mailerMetaStrip}>
               {page.top.showWebsiteLine ? (
-                <div className="font-extrabold tracking-wide text-[var(--primary)]">
+                <div className="min-w-0 text-[clamp(1rem,0.45vw+0.75rem,1.125rem)] font-extrabold tracking-wide text-[var(--primary)]">
                   {page.top.websiteText}
                 </div>
-              ) : (
-                <span />
-              )}
+              ) : null}
               {page.top.showQuoteLine ? (
-                <div className="text-center text-[13px] font-semibold leading-relaxed text-[var(--muted)] md:text-[14px]">
+                <div className="min-w-0 text-[clamp(0.9375rem,0.4vw+0.75rem,1.0625rem)] font-semibold leading-relaxed text-[var(--muted)] md:leading-[1.65]">
                   <span className="text-[var(--fg)]/85">{page.top.quoteText}</span>{" "}
                   <span className="font-extrabold text-[var(--fg)]">
                     {page.top.quoteAttribution}
@@ -162,13 +170,26 @@ export function MailerPage({ page }: { page: MailerPageData }) {
                         title={sectionHeading}
                       />
                     ) : null}
-                    <div
-                      className={`grid items-stretch ${mailerGridGap} ${gridCols}`}
-                    >
-                      {section.items.map((item: MailerGridItem) =>
-                        renderGridItem(item, section),
-                      )}
-                    </div>
+                    {section.id === "endorsements" ||
+                    section.id === "grid-middle" ? (
+                      <EndorsementsRow
+                        items={section.items}
+                        mobileCells={section.items.map((item: MailerGridItem) =>
+                          renderGridItem(item, section),
+                        )}
+                        desktopFrom={
+                          section.id === "grid-middle" ? "lg" : "md"
+                        }
+                      />
+                    ) : (
+                      <div
+                        className={`grid items-stretch ${mailerGridGap} ${gridCols}`}
+                      >
+                        {section.items.map((item: MailerGridItem) =>
+                          renderGridItem(item, section),
+                        )}
+                      </div>
+                    )}
                   </section>
                 </Fragment>
               );

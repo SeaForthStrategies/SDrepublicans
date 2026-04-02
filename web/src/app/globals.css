@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./mailer-cards.css";
 
 :root {
   /* neutrals */
@@ -28,11 +29,11 @@
   --radius-md: 16px;
   --radius-lg: 22px;
 
+  /* portrait row: space between headshot column and text (must match across subgrid + CandidateCard) */
+  --mailer-photo-text-gap: 1.125rem;
+
   /* focus */
   --ring: 0 0 0 4px rgba(18, 58, 138, 0.18);
-
-  /* motion */
-  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Tailwind theme tokens. Do not set --font-heading here — Next font sets it on
@@ -48,8 +49,23 @@
  * made localhost “randomly” look different whenever the OS/browser reported
  * dark mode (or between machines). This mailer is designed for one palette.
  */
+@media (min-width: 640px) {
+  :root {
+    --mailer-photo-text-gap: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --mailer-photo-text-gap: 1.5rem;
+  }
+}
+
 html {
   margin: 0;
+  padding: 0;
+  /* Stable base; component type scales handle readability */
+  font-size: 100%;
   color-scheme: light;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
@@ -62,8 +78,37 @@ html {
   }
 }
 
+/* Hero elephant marks — gentle float, staggered left/right */
+@keyframes hero-elephant-float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.03);
+  }
+}
+
+.hero-elephant-animate {
+  animation: hero-elephant-float 3.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+.hero-elephant-animate-delay {
+  animation-delay: 0.55s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-elephant-animate,
+  .hero-elephant-animate-delay {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
 body {
   margin: 0;
+  padding: 0;
   overflow-x: clip;
   background:
     radial-gradient(
@@ -75,8 +120,8 @@ body {
   color: var(--fg);
   font-family: var(--font-sans), system-ui, -apple-system, Segoe UI, Roboto,
     Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.55;
+  font-size: 1rem;
+  line-height: 1.62;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -98,4 +143,3 @@ body {
     scrollbar-color: rgba(90, 104, 130, 0.35) transparent;
   }
 }
-

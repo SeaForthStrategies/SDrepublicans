@@ -1,33 +1,14 @@
-import Image from "next/image";
 import {
-  mailerCardHeaderBlock,
-  mailerCardTextCol,
-  mailerCardTitle,
-  mailerKicker,
-  mailerPhotoFrameCutout,
-  mailerPhotoSizes,
-  mailerPortraitKickerSlot,
-  mailerPortraitNameSlot,
-  mailerPortraitPhotoCol,
-  mailerPortraitRow,
-  mailerQuoteBox,
-  mailerWebsiteButton,
-  mailerWebsiteButtonMuted,
-} from "@/lib/mailer-layout";
+  EndorsementCardFooterBand,
+  EndorsementCardHead,
+  EndorsementCardPhoto,
+  EndorsementCardQuote,
+} from "./endorsement-card-shared";
+import { PortraitMailerCard } from "./PortraitMailerCard";
 import { SectionBox } from "./SectionBox";
-import { mailerExplicitOrPillHref } from "@/lib/mailer-url";
 import { cn } from "@/lib/cn";
 
-export function EndorsementCard({
-  image,
-  quote,
-  byline,
-  titleKicker,
-  title,
-  urlText,
-  urlHref,
-  featured,
-}: {
+export type EndorsementCardProps = {
   image: { src: string; alt: string };
   quote: string;
   byline?: string;
@@ -36,75 +17,56 @@ export function EndorsementCard({
   urlText?: string;
   urlHref?: string;
   featured?: boolean;
-}) {
-  const websiteHref = urlText
-    ? mailerExplicitOrPillHref(urlHref, urlText)
-    : null;
+};
 
+/** Single presentation layer for all endorsement data — stack + grid use the same pieces. */
+export function EndorsementCardInner({
+  image,
+  quote,
+  byline,
+  titleKicker,
+  title,
+  urlText,
+  urlHref,
+  featured,
+}: EndorsementCardProps) {
   const footer = urlText || byline;
 
   return (
+    <PortraitMailerCard
+      photo={
+        <EndorsementCardPhoto
+          image={image}
+          priority={featured === true}
+        />
+      }
+      head={
+        <EndorsementCardHead titleKicker={titleKicker} title={title} />
+      }
+      body={<EndorsementCardQuote quote={quote} />}
+      footer={
+        footer ? (
+          <EndorsementCardFooterBand
+            byline={byline}
+            urlText={urlText}
+            urlHref={urlHref}
+          />
+        ) : undefined
+      }
+    />
+  );
+}
+
+export function EndorsementCard(props: EndorsementCardProps) {
+  return (
     <SectionBox
       className={cn(
-        "h-full overflow-hidden",
-        featured &&
+        "h-full min-h-0 flex flex-col",
+        props.featured &&
           "ring-1 ring-[var(--primary)]/25 shadow-[var(--shadow-md)]",
       )}
     >
-      <div className={mailerPortraitRow}>
-        <div className={`${mailerPhotoFrameCutout} ${mailerPortraitPhotoCol}`}>
-          <Image
-            src={image.src}
-            alt={image.alt}
-            fill
-            className="object-cover object-center"
-            sizes={mailerPhotoSizes}
-            priority={featured}
-          />
-        </div>
-
-        <div className={mailerCardTextCol}>
-          <div className={mailerCardHeaderBlock}>
-            <div className={`${mailerPortraitKickerSlot}`}>
-              {titleKicker ? <div className={mailerKicker}>{titleKicker}</div> : null}
-            </div>
-            <div className={mailerPortraitNameSlot}>
-              {title ? <div className={mailerCardTitle}>{title}</div> : null}
-            </div>
-          </div>
-
-          <div className={`${mailerQuoteBox} min-h-0 flex-1`}>{quote}</div>
-
-          {footer ? (
-            <div className="flex w-full shrink-0 flex-col gap-2 border-t border-[var(--border)] pt-3.5">
-              {urlText ? (
-                <div className="w-full">
-                  {websiteHref ? (
-                    <a
-                      href={websiteHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title={websiteHref}
-                      className={`${mailerWebsiteButton} no-underline`}
-                    >
-                      <span className="break-all">{urlText}</span>
-                    </a>
-                  ) : (
-                    <span className={mailerWebsiteButtonMuted}>
-                      <span className="break-all">{urlText}</span>
-                    </span>
-                  )}
-                </div>
-              ) : null}
-              {byline ? (
-                <div className="whitespace-pre-line text-[11px] font-extrabold leading-snug tracking-wide text-[var(--primary)] md:text-[12px]">
-                  {byline}
-                </div>
-              ) : null}
-            </div>
-          ) : null}
-        </div>
-      </div>
+      <EndorsementCardInner {...props} />
     </SectionBox>
   );
 }
