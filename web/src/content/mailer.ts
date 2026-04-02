@@ -125,7 +125,7 @@ export const mailer: { header: MailerHeader; page: MailerPageData } = {
       image: { src: "/mailer/people/corey.png", alt: "Chairman Corey Gustafson" },
       quote:
         "“This is the ONLY San Diego Republican Leadership Endorsement Guide.\nTo deliver your ballot in person, find an official drop-off location,\nor have your ballot picked up by calling 760-519-3057.”",
-      byline: "SDREPUBLICAN.COM CHAIRMAN COREY GUSTAFSON",
+      byline: "SDREPUBLICANS.COM CHAIRMAN COREY GUSTAFSON",
     },
   },
   page: {
