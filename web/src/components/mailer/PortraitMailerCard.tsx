@@ -48,7 +48,7 @@ export function PortraitMailerCard({
       <div
         className={cn(
           mailerPortraitCard,
-          "flex h-full min-h-0 w-full min-w-0 flex-1 flex-col gap-6 md:flex-row md:items-stretch md:gap-7 lg:gap-8",
+          "flex h-full min-h-0 w-full min-w-0 flex-1 flex-col gap-6 md:flex-row md:items-stretch md:gap-5 lg:gap-6",
           mailerCardPadding,
           className,
         )}

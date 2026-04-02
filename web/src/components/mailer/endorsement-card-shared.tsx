@@ -48,7 +48,11 @@ export function EndorsementCardPhoto({
           "object-cover",
           splitFullHeight === true ? "object-top" : "object-center",
         )}
-        sizes={mailerPhotoSizes}
+        sizes={
+          splitFullHeight === true
+            ? "(max-width: 767px) 168px, (max-width: 1023px) 260px, 320px"
+            : mailerPhotoSizes
+        }
         priority={priority === true}
       />
       <div className={mailerPhotoRing} />
