@@ -108,7 +108,7 @@ export function MailerPage({ page }: { page: MailerPageData }) {
             <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
               <div className="absolute left-1/2 top-[8%] h-[480px] w-[480px] -translate-x-1/2 opacity-[0.045] md:h-[640px] md:w-[640px] md:opacity-[0.055]">
                 <Image
-                  src="/mailer/brand/elephant.png"
+                  src="/mailer/brand/logo.png"
                   alt=""
                   fill
                   className="object-contain"

@@ -116,7 +116,10 @@ export type MailerHeader = {
 export const mailer: { header: MailerHeader; page: MailerPageData } = {
   header: {
     brandLeft: {
-      logo: { src: "/icon.png", alt: "San Diego Republican Leadership" },
+      logo: {
+        src: "/mailer/brand/logo.png",
+        alt: "Republican Party elephant — San Diego Republican Leadership",
+      },
       titleTop: "SAN DIEGO REPUBLICAN",
       titleBottom: "LEADERSHIP",
     },
