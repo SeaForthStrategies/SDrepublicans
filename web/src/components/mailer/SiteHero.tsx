@@ -38,8 +38,7 @@ type SiteHeroProps = {
 };
 
 /**
- * Masthead matches print-style hero: logo + brand lines + red rule, large headline;
- * optional chairman card; election strip + phone.
+ * Masthead: flanked elephants + brand lines + large headline; chairman card; election strip + phone.
  */
 export function SiteHero({
   header,
@@ -77,17 +76,11 @@ export function SiteHero({
                   >
                     {brandLeft.titleTop}
                   </p>
-                  <div className="mt-2 flex min-w-0 items-center justify-center gap-2 sm:mt-2.5 sm:gap-2.5 md:mt-3">
-                    <span
-                      className={`${heroHeadlineScale} shrink-0 tracking-[0.1em] sm:tracking-[0.16em] md:tracking-[0.2em] lg:tracking-[0.24em]`}
-                    >
-                      {brandLeft.titleBottom}
-                    </span>
-                    <span
-                      className="h-0.5 w-12 shrink-0 bg-[var(--accent)] sm:w-14 md:h-1 md:w-20 lg:w-24"
-                      aria-hidden
-                    />
-                  </div>
+                  <p
+                    className={`${heroHeadlineScale} mt-2 text-center tracking-[0.1em] sm:mt-2.5 sm:tracking-[0.16em] md:mt-3 md:tracking-[0.2em] lg:tracking-[0.24em]`}
+                  >
+                    {brandLeft.titleBottom}
+                  </p>
                 </div>
                 <HeroFlankElephant logoSrc={brandLeft.logo.src} />
               </div>
