@@ -18,11 +18,7 @@ export default function Home() {
         tabIndex={-1}
         className="relative min-w-0 pt-0 outline-none focus:outline-none"
       >
-        <SiteNav
-          logo={mailer.header.brandLeft.logo}
-          showMessageLink={Boolean(issa)}
-          showChairmanLink={Boolean(mailer.header.chairman)}
-        />
+        <SiteNav logo={mailer.header.brandLeft.logo} />
         <div className="pb-10 md:pb-14">
           <SiteHero
             header={mailer.header}

@@ -14,15 +14,9 @@ const navLinkSolid =
 
 type SiteNavProps = {
   logo: ImageRef;
-  showMessageLink: boolean;
-  showChairmanLink: boolean;
 };
 
-export function SiteNav({
-  logo,
-  showMessageLink,
-  showChairmanLink,
-}: SiteNavProps) {
+export function SiteNav({ logo }: SiteNavProps) {
   const [overHero, setOverHero] = useState(true);
 
   useLayoutEffect(() => {
@@ -52,11 +46,8 @@ export function SiteNav({
 
   const links: { href: string; label: string }[] = [
     { href: "#vote", label: "Election" },
-    ...(showChairmanLink ? [{ href: "#chairman", label: "Chairman" }] : []),
-    ...(showMessageLink ? [{ href: "#message", label: "Message" }] : []),
     { href: "#section-endorsements", label: "Endorsements" },
     { href: "#section-candidates", label: "Candidates" },
-    { href: "#voter-notice", label: "Voter notice" },
   ];
 
   return (
